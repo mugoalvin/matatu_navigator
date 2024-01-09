@@ -1,0 +1,71 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: #000;
+}
+/* @font-face {
+    font-family: Marysvile;
+    src: url(/fonts/Marysville\ Demo.ttf) format('ttf');
+}
+@font-face {
+    font-family: AlexBrush;
+    src: url(/fonts/AlexBrush-Regular.ttf);
+} */
+@font-face {
+    font-family: Anurati;
+    src: url(/fonts/WeddingdayPersonalUseRegular-1Gvo0.ttf);
+}
+
+
+
+body {
+    height: 100vh;
+    display: flex;
+}
+body header{
+    display: flex;
+    position: absolute;
+    width: 100%;
+    top: 0%;
+    align-items: center;
+    justify-content: space-between;
+    padding-inline: 1vw;
+    height: 7vh;
+    padding-block: 2vh;
+}
+body #sideBar, body main {
+    margin-block-start: 7vh;
+    padding-inline: 1vw;
+}
+body main {
+    width: 80%;
+    padding-block-start: 1vw;
+}
+body header #selectedMatatu{
+    /* font-family: Anurati; */
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 5vh;
+}
+body  #sideBar {
+    height: 93vh;
+    width: 20%;
+    padding-block-end: 1vw;
+    padding-inline: 1vw;
+    background-color: #999;
+}
+body  #sideBar > div{
+    display: flex;
+    align-items: center;
+    gap: 10%;
+    padding-block: 2vh;
+    margin-block: 1vh;
+}
+body  #sideBar > div:hover{
+    background-color: aqua;
+}
+body  #sideBar > div a{
+    height: 100%;
+    width: 100%;
+    text-decoration: none;
+}
