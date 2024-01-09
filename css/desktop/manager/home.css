@@ -1,0 +1,13 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body main{
+    height: 90%;
+    width: 100px;
+}
+body main #map{
+    width: 50%;
+    height: 50%;
+}
