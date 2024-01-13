@@ -13,25 +13,19 @@
 </head>
 
 <body>
-    <!-- <h2>Manager Dashboard</h2> -->
     <?php
-
-    // error_reporting(E_ALL);
-    // ini_set("display_errors" , 1);
 
     include("navbar.php");
 
 
-    $descTableResult = include('../../controller/manager/desc_table.php');
+    $descTableResult = include('../../controller/manager/descMatatuCompanies.php');
 
-    $selectedMatatuResults = include('../../controller/manager/getTableData.php');
 
-    if (!$selectedMatatuResults && $descTableResult) {
+    if (!$matatuDetails && $descTableResult) {
         $_SESSION['isMatatuSelected'] = false;
     } else {
         $_SESSION['isMatatuSelected'] = true;
     }
-
 
     ?>
     <main>
@@ -66,7 +60,7 @@
                 //     continue;
                 // }
                 $valueField = $value->Field;
-                $inputBoxValue = $selectedMatatuResults->$valueField;
+                $inputBoxValue = $matatuDetails->$valueField;
                 echo "
                 <div id='data'>
                     <label id='label'>$valueField: </label>

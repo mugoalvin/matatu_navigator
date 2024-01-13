@@ -15,9 +15,8 @@
     <?php
     include("navbar.php");
 
-    $descTableResult = include('../../controller/manager/desc_table.php');
+    $descTableResult = include('../../controller/manager/descManagerDetails.php');
 
-    $selectedMatatuResults = include('../../controller/manager/getTableData.php');
 
     ?>
     <main>
@@ -28,46 +27,62 @@
 
             #data label {
                 margin-inline-end: 3%;
-            }
-
-            #buttonDiv {
-                flex-direction: row;
-                justify-content: center;
-                gap: 10%;
-            }
-
-            #buttonDiv>.btns {
-                min-width: auto;
-                padding: 1% 2% 1% 2%;
-                border: solid 1px var(--black);
+                font-weight: 900;
             }
         </style>
         <form action="../../controller/manager/deleteProfile_proc.php" method="post">
             <h2>Managers Details</h2>
 
             <?php
+            
+            foreach ($descTableResult as $result) {
 
-            foreach ($descTableResult as $key => $value) {
-                // if ($value->Field == 'id') {
-                //     continue;
-                // }
-                $valueField = $value->Field;
-                $inputBoxValue = $selectedMatatuResults->$valueField;
+                if ($result->Field == 'company_id') {
+                    $result->Field = 'company_name';
+                    $inputBoxValue = $matatuDetails->name;
+                } else {
+                    $inputBoxValue = $_SESSION["loginInManager"]->{$result->Field};
+                }
+
+                if ($result->Field == 'id') {
+                    continue;
+                }
+
                 echo "
                 <div id='data'>
-                    <label id='label'>$valueField: </label>
-                    <input name='$valueField' value = '$inputBoxValue'>
+                    <label id='label'>$result->Field: </label>
+                    <span>$inputBoxValue</span>
                 </div>
                 ";
             }
+            echo "
+            <div id='data'>
+                <label id='label'>city: </label>
+                <span>$matatuDetails->city</span>
+            </div>
+            ";
             ?>
-            <!-- <div id='buttonDiv'>
-                <input type="submit" value="Delete" class="btns" id="deleteBtn">
-                <input type="button" value="Cancel" class="btns" onclick="cancelDelete()">
-            </div> -->
         </form>
 
     </main>
+    <script>
+        document.querySelectorAll('#label').forEach(label => {
+            label.style.fontWeight = 900
+            label.innerText = label.innerText.charAt(0).toUpperCase() + label.innerText.slice(1);
+
+            label.innerText = label.innerText.replace('_', ' ')
+            if (label.innerText[label.innerText.indexOf(' ') + 1] !== undefined) {
+                label.innerText = label.innerText.replace('_', ' ');
+
+                const secondWordStart = label.innerText.indexOf(' ') + 1;
+                if (secondWordStart !== -1) {
+                    label.innerText = label.innerText.substr(0, secondWordStart) +
+                    label.innerText[secondWordStart].toUpperCase() +
+                    label.innerText.substr(secondWordStart + 1);
+                }
+            }
+        });
+    </script>
 </body>
 
 </html>

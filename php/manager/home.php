@@ -16,9 +16,11 @@
 <body>
     <?php
     session_start();
+
     if (!isset($_SESSION["loginInManager"])) {
         header("Location: ../login.php");
     }
+
     include("navbar.php");
     
     ?>
@@ -31,11 +33,10 @@
     </main>
     <script src="../../javascript/manager/home.js"></script>
     <script>
-
         let getDirectionsCalled = false
 
-        displayMap(selectedMatatu).then(function (createdMap) {
-            document.getElementById("getDirectionBtn").addEventListener("click", function () {
+        displayMap(selectedMatatu).then(function(createdMap) {
+            document.getElementById("getDirectionBtn").addEventListener("click", function() {
                 getDirections(createdMap);
             });
         });

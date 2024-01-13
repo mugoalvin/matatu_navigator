@@ -17,16 +17,15 @@
     <link rel="stylesheet" href="https://js.arcgis.com/4.28/esri/themes/light/main.css" />
     <script src="https://js.arcgis.com/4.28/"></script>
 
-
 </head>
 
 <body>
     <?php
 
     include("navbar.php");
-    $descTableResult = include('../../controller/manager/desc_table.php');
 
-    $selectedMatatuResults = include('../../controller/manager/getTableData.php');
+    $descTableResult = include('../../controller/manager/descMatatuCompanies.php');
+
     ?>
     <script>
         let selectedMatatu = <?php echo json_encode($matatuDetails); ?>;
@@ -37,13 +36,12 @@
             <?php
 
             foreach ($descTableResult as $key => $value) {
-                if ($value->Field == 'id') {
-                    $disabled = 'disabled';
-                } else {
-                    $disabled = '';
-                }
+                // if ($value->Field == 'id') {
+                //     continue;
+                // }
                 $valueField = $value->Field;
-                $inputBoxValue = $selectedMatatuResults->$valueField;
+                $inputBoxValue = $_SESSION['matatuDetails']->$valueField;
+
                 echo "
                 <div id='$value->Field$value->Field'>
                     <label>$value->Field</label>
@@ -63,41 +61,7 @@
             <section id="map"></section>
         </div>
     </main>
-    <script src="../../javascript/manager/update_profile.js"></script>
     <script src="../../javascript/manager/home.js"></script>
-    <script>
-        document.getElementById('idid').style.display = 'none';
-
-
-        displayMap(selectedMatatu).then(function(createdMap) {
-            view = createdMap.view
-            view.on('click', () => {
-                attachClickEventToMap(createdMap.view);
-            })
-        })
-
-        const id = (ID) => {
-            return document.getElementById(ID);
-        }
-
-        function onMapClick(e) {
-
-            var lat = e.mapPoint.latitude;
-            var lng = e.mapPoint.longitude;
-
-            const latitudeInput = id('latitude')
-            const longitudeInput = id('longitude')
-
-            latitudeInput.value = lat
-            longitudeInput.value = lng
-        }
-
-        function attachClickEventToMap(view) {
-            view.on('click', (event) => {
-                onMapClick(event, view);
-            });
-        }
-    </script>
 </body>
 
 </html>

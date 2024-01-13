@@ -3,6 +3,6 @@
 include("../../model/manager/class.php");
 
 $managerClassObj = new managerClass;
-$matatuDetails = $managerClassObj->select('matatuCompanies')[0];
+return $managerClassObj->select('matatuCompanies', $_SESSION["loginInManager"]->company_id)[0];
 
 ?>
