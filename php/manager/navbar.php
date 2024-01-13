@@ -1,7 +1,15 @@
 <?php
-include("../../controller/manager/json.php");
-
 session_start();
+
+$matatuDetails = include("../../controller/manager/json.php");
+
+if ($matatuDetails) {
+    $_SESSION['isMatatuSelected'] = true;
+    $_SESSION['matatuDetails'] = $matatuDetails;
+}
+else {
+    $_SESSION['isMatatuSelected'] = false;
+}
 ?>
 
 <!DOCTYPE html>
@@ -42,88 +50,60 @@ session_start();
     <?php
     if ($_SESSION['isMatatuSelected']) {
         echo '
-        <div id="sideBar">
-        <div>
-            <h2>SideBar</h2>
-        </div>
-        <div>
-            <a href="home.php">Home</a href="#">
-        </div>
-        <hr>
-        <div>
-            <a href="new_route.php">Create New Route</a href="#">
-        </div>
-        <hr>
-        <div>
-            <a href="update_details.php">Update Matatu Details</a href="#">
-        </div>
-        <hr>
-        <div>
-            <a href="delete_profile.php">Delete Matatu Profile</a href="#">
-        </div>
-        <hr>
-        <div>
-            <a href="manager_details.php">Managers Details</a href="#">
-        </div>
-        <hr>
-        <div>
-            <a href="logout.php">Logout From Company</a href="#">
-        </div>
-        <hr>
-    </div>
-    ';
+            <div id="sideBar">
+                <div>
+                    <h2>SideBar</h2>
+                </div>
+                <div>
+                    <a href="home.php">Home</a href="#">
+                </div>
+                <hr>
+                <div>
+                    <a href="new_route.php">Create New Route</a href="#">
+                </div>
+                <hr>
+                <div>
+                    <a href="update_details.php">Update Matatu Details</a href="#">
+                </div>
+                <hr>
+                <div>
+                    <a href="delete_profile.php">Delete Matatu Profile</a href="#">
+                </div>
+                <hr>
+                <div>
+                    <a href="manager_details.php">Managers Details</a href="#">
+                </div>
+                <hr>
+                <div>
+                    <a href="logout.php">Logout From Company</a href="#">
+                </div>
+                <hr>
+            </div>
+        ';
     } else {
         echo '
-        <div id="sideBar">
-        <div>
-            <h2>SideBar</h2>
-        </div>
-            <div>
-                <a href="create_profile.php">Create New Matatu Profile</a href="#">
-            </div>
-            <div>
-                <a href="login2company.php">Login To Company</a href="#">
-            </div>
-            <div>
-                <a href="manager_details.php">Managers Details</a href="#">
+            <div id="sideBar">
+                <div>
+                    <h2>SideBar</h2>
                 </div>
+                <hr>
+                <div>
+                    <a href="create_profile.php">Create New Matatu Profile</a href="#">
                 </div>
-                ';
+                <hr>
+                <div>
+                    <a href="login2company.php">Login To Company</a href="#">
+                </div>
+                <hr>
+                <div>
+                    <a href="manager_details.php">Managers Details</a href="#">
+                </div>
+            </div>
+        ';
     }
     ?>
-    <!-- <div id="sideBar">
-        <div>
-            <h2>SideBar</h2>
-        </div>
-        <div>
-            <a href="home.php">Home</a href="#">
-        </div>
-        <hr>
-        <div>
-            <a href="new_route.php">Create New Route</a href="#">
-        </div>
-        <hr>
-        <div>
-            <a href="update_details.php">Update Matatu Details</a href="#">
-        </div>
-        <hr>
-        <div>
-            <a href="delete_profile.php">Delete Matatu Profile</a href="#">
-        </div>
-        <hr>
-        <div>
-            <a href="manager_details.php">Managers Details</a href="#">
-        </div>
-        <hr>
-        <div>
-            <a href="logout.php">Logout From Company</a href="#">
-        </div>
-        <hr>
-    </div> -->
-
 
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>
-
 </html>

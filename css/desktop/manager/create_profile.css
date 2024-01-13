@@ -18,7 +18,7 @@ form div{
     width: 70%;
     margin: 2%;
 }
-form div input{
+form div input, form div select{
     height: 2.5em;
     border: solid 1px var(--black);
     border-radius: 0.5em;

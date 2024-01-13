@@ -1,10 +1,16 @@
-apiKey = "AAPKc4890c4654534900a686c06f0aae2052DKqIh5UizpYasKOG1TjkmCg6_XVR3yxHlk7iHjMAzsWBI5nQtIVp-xqC4PzChRCl";
+apiKey =  "AAPKc4890c4654534900a686c06f0aae2052DKqIh5UizpYasKOG1TjkmCg6_XVR3yxHlk7iHjMAzsWBI5nQtIVp-xqC4PzChRCl";
 
-let map ; // Global variable to store the map
+let map;
 
 function displayMap(location) {
-  return new Promise(function(resolve, reject) {
-    require(["esri/config", "esri/Map", "esri/views/MapView", "esri/Graphic", "esri/layers/GraphicsLayer"], function (esriConfig, Map, MapView, Graphic, GraphicsLayer) {
+  return new Promise(function (resolve, reject) {
+    require([
+      "esri/config",
+      "esri/Map",
+      "esri/views/MapView",
+      "esri/Graphic",
+      "esri/layers/GraphicsLayer",
+    ], function (esriConfig, Map, MapView, Graphic, GraphicsLayer) {
       esriConfig.apiKey = apiKey;
 
       const map = new Map({
@@ -35,42 +41,55 @@ function displayMap(location) {
       };
 
       const graphicsLayer = new GraphicsLayer();
-      
+
       const pointGraphic = new Graphic({
         geometry: marker,
         symbol: simpleMarkerSymbol,
       });
-      
+
       graphicsLayer.add(pointGraphic);
       map.add(graphicsLayer);
 
-      resolve( { map: map, view: view } );
+      resolve({ map: map, view: view });
     });
   });
 }
 
-
 function getDirections(mapData, fromCurrentLocation) {
-  require(["esri/config", "esri/Map", "esri/views/MapView", "esri/Graphic", "esri/rest/route", "esri/rest/support/RouteParameters", "esri/rest/support/FeatureSet"], function (esriConfig, Map, MapView, Graphic, route, RouteParameters, FeatureSet) {
+  require([
+    "esri/config",
+    "esri/Map",
+    "esri/views/MapView",
+    "esri/Graphic",
+    "esri/rest/route",
+    "esri/rest/support/RouteParameters",
+    "esri/rest/support/FeatureSet",
+  ], function (
+    esriConfig,
+    Map,
+    MapView,
+    Graphic,
+    route,
+    RouteParameters,
+    FeatureSet
+  ) {
     esriConfig.apiKey = apiKey;
 
     const map = mapData.map;
     const view = mapData.view;
 
-
-    const routeUrl = "https://route-api.arcgis.com/arcgis/rest/services/World/Route/NAServer/Route_World";
+    const routeUrl =
+      "https://route-api.arcgis.com/arcgis/rest/services/World/Route/NAServer/Route_World";
 
     view.on("click", function (event) {
       if (view.graphics.length === 0) {
         addGraphic("origin", event.mapPoint);
         // addGraphic("origin", getCurrentLocation());
-      }
-      else if (view.graphics.length === 1) {
+      } else if (view.graphics.length === 1) {
         addGraphic("destination", event.mapPoint);
-        
+
         getRoute();
-      }
-      else {
+      } else {
         view.graphics.removeAll();
         // addGraphic("origin", event.mapPoint);
       }
@@ -116,11 +135,9 @@ function getDirections(mapData, fromCurrentLocation) {
               "esri-widget esri-widget--panel esri-directions__scroller";
             directions.style.marginTop = "0";
             directions.style.padding = "15px 15px 15px 30px";
-            
 
             // ============================Shows the directions descriptions on the topleft side of the screen================================
 
-            
             // const features = data.routeResults[0].directions.features;
             // Show each direction
             // features.forEach(function (result, i) {
@@ -146,28 +163,26 @@ function getDirections(mapData, fromCurrentLocation) {
   });
 }
 
-
 // ===================== Getting the coordinates of the current location ==========================
 
 function getCurrentLocation() {
   return new Promise((resolve, reject) => {
-      if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition(
-              function (position) {
-                  const coordinates = {
-                      latitude: position.coords.latitude,
-                      longitude: position.coords.longitude
-                  };
-                  resolve(coordinates);
-              },
-              function (error) {
-                  reject("Error getting location: " + error.message);
-              }
-          );
-      }
-      else {
-          reject("Geolocation is not supported by this browser.");
-      }
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        function (position) {
+          const coordinates = {
+            latitude: position.coords.latitude,
+            longitude: position.coords.longitude,
+          };
+          resolve(coordinates);
+        },
+        function (error) {
+          reject("Error getting location: " + error.message);
+        }
+      );
+    } else {
+      reject("Geolocation is not supported by this browser.");
+    }
   });
 }
 
@@ -177,3 +192,31 @@ function getCurrentLocation() {
 // })
 
 // =================================================================================
+
+displayMap(selectedMatatu).then(function (createdMap) {
+  view = createdMap.view;
+  view.on("click", () => {
+    attachClickEventToMap(createdMap.view);
+  });
+});
+
+const id = (ID) => {
+  return document.getElementById(ID);
+};
+
+function onMapClick(e) {
+  var lat = e.mapPoint.latitude;
+  var lng = e.mapPoint.longitude;
+
+  const latitudeInput = id("latitude");
+  const longitudeInput = id("longitude");
+
+  latitudeInput.value = lat;
+  longitudeInput.value = lng;
+}
+
+function attachClickEventToMap(view) {
+  view.on("click", (event) => {
+    onMapClick(event, view);
+  });
+}

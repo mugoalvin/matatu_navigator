@@ -21,9 +21,6 @@ class loginDBO {
         elseif ($tableName == "users"){
             $fetchCommand = "SELECT * FROM users WHERE username = :username";
         }
-        echo $fetchCommand;
-        echo "<br>";
-        echo $username;
         $stmt = $this->conn->prepare($fetchCommand);
         $stmt->bindParam(':username', $username);
         $stmt->execute();

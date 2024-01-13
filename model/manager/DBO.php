@@ -53,8 +53,8 @@ class DBO {
         }
     }
 
-    function select($tableName) {
-        $getMatatuDetailsCommand = "SELECT * FROM $tableName WHERE id = 10";
+    function select($tableName, $id) {
+        $getMatatuDetailsCommand = "SELECT * FROM $tableName WHERE id = $id";
         $stmt = $this->conn->prepare($getMatatuDetailsCommand);
         try {
             $stmt->execute();
@@ -87,12 +87,56 @@ class DBO {
     function delete($tableName, $id) {
         $deleteCommand = "DELETE FROM $tableName WHERE id = $id";
         $stmt = $this->conn->prepare($deleteCommand);
-        // $stmt->bindParam(1,$id);
         try {
             $stmt->execute();
         }
         catch (Throwable $th) {
             throw $th;
+        }
+    }
+// =================================================================================================================
+
+
+
+
+    function selectManagerAndCompany () {
+        $selectCommand = " SELECT
+            matatuCompanies.id,
+            matatuCompanies.name,
+            matatuCompanies.latitude,
+            matatuCompanies.longitude,
+            matatuCompanies.city,
+            managers.first_name,
+            managers.last_name,
+            managers.username,
+            managers.password
+        FROM matatuCompanies
+        INNER JOIN managers
+        ON matatuCompanies.id = managers.company_id ";
+        $stmt = $this->conn->prepare($selectCommand);
+        try {
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_OBJ);
+        } catch (Throwable $th) {
+            throw $th;
+        }
+
+    }
+
+    function insertToRoutes($obj) {
+        print_r($obj);
+        $insertCommand = "INSERT INTO routes (departure_id, destination_id, price, eta) VALUES ($obj->departure, $obj->destination, $obj->price, '$obj->eta')";
+        echo '<br>';
+
+        echo $insertCommand;
+        $stmt = $this->conn->prepare($insertCommand);
+        // $stmt->bindParam('', $obj->departure)
+        try {
+            $stmt->execute();
+        }
+        catch (Exception $e){
+            echo '<br>';
+            echo 'Message: ' .$e->getMessage();
         }
     }
 
