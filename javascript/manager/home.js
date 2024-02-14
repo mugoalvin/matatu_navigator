@@ -58,16 +58,12 @@ function displayMap(location) {
 function getDirections(mapData, fromCurrentLocation) {
   require([
     "esri/config",
-    "esri/Map",
-    "esri/views/MapView",
     "esri/Graphic",
     "esri/rest/route",
     "esri/rest/support/RouteParameters",
     "esri/rest/support/FeatureSet",
   ], function (
     esriConfig,
-    Map,
-    MapView,
     Graphic,
     route,
     RouteParameters,

@@ -16,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $newUser = new registrationClass;
     $newUser->addToTable($userInput);
 
-    $_SESSION["username"] = $userInput->username;
+    $_SESSION["loginInUser"] = $userInput;
 
     header("Location: ../../php/traveller/dashboard.php");
 }

@@ -1,0 +1,49 @@
+main {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    padding: 1%;
+    background-color: aqua;
+}
+#ratingForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 60%;
+}
+#ratingForm > div{
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    margin: 2%;
+}
+#ratingForm > div input, #ratingForm > div select{
+    height: 2.5em;
+    border: solid 1px var(--black);
+    border-radius: 0.5em;
+    padding-inline: 1%;
+}
+#ratingForm > .submit{
+    height: 2em;
+    min-width: auto;
+    padding-inline: 1%;
+}
+
+/* #rating { */
+    /* display: none; */
+/* } */
+
+#stars {
+    display: flex;
+    justify-content: space-evenly;
+    transform: rotateZ('90deg');
+}
+
+.star {
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.star:hover, .star.active {
+    color: orange;
+}

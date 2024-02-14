@@ -7,7 +7,35 @@ class DBO {
 
     function __construct() {
         $db = new DatabaseConnection;
-        $this->conn = $db->getConnection();  // Assign the connection to $this->conn
+        $this->conn = $db->getConnection();
+    }
+
+    function addFeedback($obj) {
+        $insertionCommand = "INSERT INTO rating(route_id, rating, user_id, feedback) VALUES(:route_id, :rating, :user_id, :feedback)";
+        $stmt = $this->conn->prepare($insertionCommand);
+        $stmt->bindParam(':route_id', $obj->route_id);
+        $stmt->bindParam(':rating', $obj->rating);
+        $stmt->bindParam(':user_id', $obj->user_id);
+        $stmt->bindParam(':feedback', $obj->feedback);
+        try {
+            $stmt->execute();
+        }
+        catch (Throwable $th) {
+            throw $th;
+        }
+    }
+
+    function selectAllWhere($id) {
+        $selectCommand = "SELECT * FROM rating ON WHERE route_id = :id";
+        $stmt = $this->conn->prepare($selectCommand);
+        $stmt->bindParam(':id', $id);
+        try {
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_OBJ);
+        }
+        catch (Throwable $th) {
+            throw $th;
+        }
     }
 
     function getMatatuRoutes($departure, $destination) {

@@ -13,12 +13,12 @@
         <h2>Registration Page</h2>
         <div>
             <label>First Name:</label>
-            <input type="text" name="fname" id="fname">
+            <input type="text" name="first_name" id="fname">
             <p id="fnameError" class="errorMessages"></p>
         </div>
         <div>
             <label>Last Name:</label>
-            <input type="text" name="lname" id="lname">
+            <input type="text" name="last_name" id="lname">
             <p id="lnameError" class="errorMessages"></p>
         </div>
         <div>

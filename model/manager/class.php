@@ -12,9 +12,25 @@ class managerClass {
         return true;
     }
 
+    // ==========Traveller's===============================
+    function selectWhereId($id) {
+        $newObj = new DBO;
+        return $newObj->selectAllWhere($id);
+    }
+    // ===============================================
+
+    function selectAllExcept($tableName, $city) {
+        $newObj = new DBO;
+        return $newObj->selectAllExcept($tableName, $city);
+    }
+
     function selectAll($tableName) {
         $newObj = new DBO;
         return $newObj->selectAll($tableName);
+    }
+    function selectID($tableName, $id) {
+        $dboObj = new DBO;
+        return $dboObj->selectID($tableName, $id);
     }
 
     function select($tableName, $id) {

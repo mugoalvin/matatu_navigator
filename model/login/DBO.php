@@ -18,8 +18,8 @@ class loginDBO {
         if ($tableName == 'managers'){
             $fetchCommand = "SELECT * FROM managers WHERE username = :username";
         }
-        elseif ($tableName == "users"){
-            $fetchCommand = "SELECT * FROM users WHERE username = :username";
+        elseif ($tableName == "travellers"){
+            $fetchCommand = "SELECT * FROM travellers WHERE username = :username";
         }
         $stmt = $this->conn->prepare($fetchCommand);
         $stmt->bindParam(':username', $username);

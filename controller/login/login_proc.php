@@ -1,7 +1,7 @@
 <?php
 
-error_reporting(E_ALL);
-ini_set("display_errors", 1);
+// error_reporting(E_ALL);
+// ini_set("display_errors", 1);
 
 session_start();
 
@@ -11,10 +11,11 @@ include("../../model/login/class.php");
 if (isset($_POST)) {
     $usersInput = (object)$_POST;
     $obj = new loginClass;
-    function getAllUsersAndManagers($obj, $usersInput, $tableName)
-    {
-        return $obj->getData($usersInput->username, $tableName);
+    
+    function getAllUsersAndManagers($object, $usersInput, $tableName) {
+        return $object->getData($usersInput->username, $tableName);
     }
+    
     if (strpos($usersInput->username, "mng") !== false) {
         $dbCredentials = getAllUsersAndManagers($obj, $usersInput, 'managers');
         if (!$dbCredentials) {
@@ -33,9 +34,12 @@ if (isset($_POST)) {
                 }
             }
         }
-    } 
+    }
+    elseif (strpos($usersInput->username, "admin") !== false) {
+        header("Location: ../../php/admin/home.php");
+    }
     else {
-        $dbCredentials = getAllUsersAndManagers($obj, $usersInput, 'users');
+        $dbCredentials = getAllUsersAndManagers($obj, $usersInput, 'travellers');
         foreach ($dbCredentials as $credential) {
             if ($usersInput->username == $credential->username) {
                 if ($usersInput->password == $credential->password) {
@@ -49,5 +53,5 @@ if (isset($_POST)) {
     }
 } else {
     echo '5';
-    header("Location: ../../php/login.php");
+    // header("Location: ../../php/login.php");
 }

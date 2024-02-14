@@ -14,6 +14,7 @@ class DBO {
         $this->conn = $db->getConnection();
     }
 
+
     function descTable($tableName) {
         $descCommand = "DESC $tableName ";
         $stmt = $this->conn->prepare($descCommand);
@@ -27,12 +28,14 @@ class DBO {
     }
 
     function insertProfile($obj) {
-        $insertCommand = "INSERT INTO `matatuCompanies`(name, latitude, longitude, city) VALUES(:name, :latitude, :longitude, :city)";
+        $insertCommand = "INSERT INTO `matatuCompanies`(id, name, latitude, longitude, city) VALUES(:id, :name, :latitude, :longitude, :city)";
         $stmt = $this->conn->prepare($insertCommand);
+        $stmt->bindParam(':id', $obj->company_id);
         $stmt->bindParam(':name', $obj->name);
         $stmt->bindParam(':latitude', $obj->latitude);
         $stmt->bindParam(':longitude', $obj->longitude);
         $stmt->bindParam(':city', $obj->city);
+        print_r($stmt->queryString);
         try {
             $stmt->execute();
             return true;
@@ -41,6 +44,19 @@ class DBO {
             echo ''. $e->getMessage() .'';
         }
     }
+
+    function selectAllExcept($tableName, $city) {
+        // $getMatatuDetailsCommand = "SELECT * FROM $tableName WHERE city != '$city' ";
+        $getMatatuDetailsCommand = "SELECT * FROM $tableName";
+        $stmt = $this->conn->prepare($getMatatuDetailsCommand);
+        try {
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_OBJ);
+        } catch (Throwable $th) {
+            die("Error in retrieving details: " . $th->getMessage());
+        }
+    }
+
 
     function selectAll($tableName) {
         $getMatatuDetailsCommand = "SELECT * FROM $tableName";
@@ -52,9 +68,22 @@ class DBO {
             die("Error in retrieving details: " . $th->getMessage());
         }
     }
-
     function select($tableName, $id) {
+        // $getMatatuDetailsCommand = "SELECT * FROM $tableName WHERE id = $id";
+        $getMatatuDetailsCommand = "SELECT * FROM $tableName";
+        $stmt = $this->conn->prepare($getMatatuDetailsCommand);
+        try {
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_OBJ);
+        }
+        catch (Throwable $th) {
+            die ("Error in retrieving details: " . $th->getMessage());
+        }
+    }
+
+    function selectID($tableName, $id) {
         $getMatatuDetailsCommand = "SELECT * FROM $tableName WHERE id = $id";
+        // $getMatatuDetailsCommand = "SELECT * FROM $tableName";
         $stmt = $this->conn->prepare($getMatatuDetailsCommand);
         try {
             $stmt->execute();
@@ -130,7 +159,7 @@ class DBO {
 
         echo $insertCommand;
         $stmt = $this->conn->prepare($insertCommand);
-        // $stmt->bindParam('', $obj->departure)
+
         try {
             $stmt->execute();
         }
@@ -139,7 +168,4 @@ class DBO {
             echo 'Message: ' .$e->getMessage();
         }
     }
-
 }
-
-?>
