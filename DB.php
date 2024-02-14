@@ -11,7 +11,7 @@ class DatabaseConnection {
         $this->host = "localhost";
         $this->username = "alvin";
         $this->password = "";
-        $this->dbName = "Login";
+        $this->dbName = "alvin";
 
         try {
             $dsn = "mysql:host=$this->host;dbname=$this->dbName";

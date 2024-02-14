@@ -8,7 +8,7 @@ $managersInput = (object)$_POST;
 $managerClassObj = new managerClass;
 try {
     $managerClassObj->add($managersInput);
-    header('Location: ../../php/manager/create_profile.php');
+    header('Location: ../../php/manager/home.php');
     ?>
         <script>
             alert('Record Added Successfully')

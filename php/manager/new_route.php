@@ -23,7 +23,7 @@
     <!-- <h2>Manager Dashboard</h2> -->
     <?php
     include("navbar.php");
-    $matatuCompanies = include('../../controller/manager/getTableData.php');
+    $matatuCompanies = include('../../controller/manager/getAvailableMatatus.php');
     $_SESSION['matatuCompanies'] = $matatuCompanies;
     ?>
     <script>
@@ -45,8 +45,13 @@
                 <label>Destination:</label>
                 <select name='destination' id='destination'>
                     <option selected disabled>Choose Destination</option> ";
-                foreach ($matatuCompanies as $company) {
-                    echo "<option>$company->name, $company->city</option>";
+                    foreach ($matatuCompanies as $company) {
+                    if ($company->name == $matatuDetails->name && $company->city !== $matatuDetails->city) {
+                        echo "<option>$company->name, $company->city</option>";
+                    }
+                    else {
+                        continue;
+                    }
                 }
                 echo "
                 </select>

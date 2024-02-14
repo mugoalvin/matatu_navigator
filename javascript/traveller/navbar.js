@@ -1,14 +1,30 @@
-const id = (ID) => {
-    return document.getElementById(ID);
-}
+var integer = 0;
 
-// const searchBtn = id("searchBtn");
-// searchBtn.addEventListener('click', () => {
-//     allMatatus.forEach(matatu => {
-//         console.log(matatu);
-//     });
-//     // console.log(
-//     //     id("departure").value,
-//     //     id("destination").value
-//     // );
-// })
+availableMatatusObj.forEach(availableMatatuObj => {
+    ratingArray = [];
+    feedbacks.forEach(feedback => {
+        if (availableMatatuObj.route_id == feedback.route_id) {
+            ratingArray.push(feedback.rating);
+        }
+    });
+
+    var totalRating = ratingArray.reduce((acc, curr) => acc + curr, 0);
+    var averageRating = ratingArray.length > 0 ? totalRating / ratingArray.length : 0;
+
+    var idOfParagraph = "paragraph" + integer;
+    var ratingP = document.querySelector("." + idOfParagraph);
+    ratingP.innerText = "Rating: " + averageRating;
+    ratingP.style.fontWeight = 900
+    ratingP.style.color = generateColor(averageRating)
+
+    var stars = document.querySelectorAll('.stars'+ integer + ' .starRating');
+    stars.forEach(function (star, index) {
+        if (index < averageRating) {
+            star.classList.add("active");
+        } else {
+            star.classList.remove("active");
+        }
+    });
+
+    integer += 1;
+});

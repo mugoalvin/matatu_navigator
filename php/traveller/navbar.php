@@ -1,29 +1,53 @@
 <?php
 session_start();
-
 include('../../model/manager/class.php');
+$feedback = $_SESSION['feedbacks'];
+
 
 if (!$_SESSION["loginInUser"]) {
     header("Location: ../login.php");
 }
-
+// ==========================If rating is saved==========================
+if ($_SESSION['isRaringSaved']) { ?>
+    <script>
+        alert('Data is successfully saved')
+    </script>
+<?php }
+$_SESSION['isRaringSaved'] = false;
+// ================================================================
 
 $_SESSION["allMatatus"] = include('../../controller/manager/getTableData.php');
-
 ?>
+
+<script>
+    var feedbacks = <?php echo json_encode($feedback) ?>;
+</script>
+
 <script>
     var allMatatus = <?php echo json_encode($_SESSION["allMatatus"]) ?>;
-    console.log(allMatatus);
+    var departureCity = <?php echo json_encode($_SESSION['departureCity']) ?>;
+    var destinationCity = <?php echo json_encode($_SESSION['destinationCity']) ?>;
 </script>
 
 <head>
+    <link rel="stylesheet" href="../../css/color.css">
     <link rel="stylesheet" href="../../css/desktop/traveller/navbar.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Italianno&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Italianno&family=Neonderthaw&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Waterfall&display=swap" rel="stylesheet">
 </head>
-<header>
-    <h3>
-        Welcome, <?php echo $_SESSION["loginInUser"]->first_name . ' ' . $_SESSION["loginInUser"]->last_name ?>
-    </h3>
-    <form action="../../controller/traveller/getAvailableMatatus.php" method="post">
+
+
+
+<header id="navbarHeader">
+    <div>
+        <ion-icon name="menu"></ion-icon>
+        <h3>Matatu Assistant</h3>
+    </div>
+    <form action="../../controller/traveller/getAvailableMatatus.php" method="post" id="formDesDep">
         <select name="departure" id="departure">
             <option selected disabled>Choose Departure</option>
             <?php
@@ -36,6 +60,7 @@ $_SESSION["allMatatus"] = include('../../controller/manager/getTableData.php');
                     $cities[] = $matatu->city;
                 }
             }
+
             foreach ($cities as $city) {
                 echo "
                 <option>$city</option>
@@ -53,32 +78,67 @@ $_SESSION["allMatatus"] = include('../../controller/manager/getTableData.php');
             }
             ?>
         </select>
-        <!-- <button id='searchBtn'>Search</button>  -->
-        <input type="submit" value='Search'>
+        <button type="submit" id="searchRouteBtn" class="input"><ion-icon name="search"></ion-icon></button>
     </form>
     <div>
-        <ion-icon name="moon-outline"></ion-icon>
-        <ion-icon name="person-outline"></ion-icon>
+        <ion-icon id="darkModeToggle" name="moon"></ion-icon>
+        <div id="userAndDropDown" style='position: relative'>
+            <div id='user'>
+                <?php echo $_SESSION["loginInUser"]->first_name . ' ' . $_SESSION["loginInUser"]->last_name ?>
+                <ion-icon name="person-outline"></ion-icon>
+                <ion-icon name="chevron-down-outline" id="chevron-down-outline"></ion-icon>
+            </div>
+            <form id='dropDown' action="../../controller/traveller/logout.php">
+                <button><ion-icon name="log-out-outline"></ion-icon>Log Out</button>
+            </form>
+        </div>
     </div>
 </header>
+
+
+<!-- =======================SIDE BAR=========================== -->
 <section id="sideBar">
     <h3>Available Matatus</h3>
     <hr>
     <div id='matatuOptions'>
-        <?php
-        // print_r($_SESSION['availableMatatus']);
-        foreach ($_SESSION['availableMatatus'] as $availableMatatu) {
-            echo "
-                <div id='matatuOption'>
-                    <img src='../images/cool-background.png' alt=''>
-                    <div id='details'>
-                        <snap>$availableMatatu->departure_name</snap>
-                        <p>$availableMatatu->price/=</p>
+        <script>
+            var availableMatatusObj = <?php echo json_encode($_SESSION['availableMatatus']) ?>
+        </script>
+
+        <?php 
+        $integer = 0;
+        foreach ($_SESSION['availableMatatus'] as $availableMatatu): ?>
+            <div id='matatuOption'>
+                <img src='../../images/cool-background.png' alt=''>
+                <div id='details'>
+                    <snap id='departure_name' class='departure_name'>
+                        <?php echo $availableMatatu->departure_name ?>
+                    </snap>
+                    <p id='price' class='price'>Price:
+                        <?php echo $availableMatatu->price ?>/=
+                    </p>
+                    <p id='route_id' class='route_id' style="height: 0; color: transparent">
+                        <?php echo $availableMatatu->route_id ?>
+                    </p>
+                    <div id="starsDiv">
+                        <p id="paragraph<?php echo $integer?>" class="paragraph<?php echo $integer?>">Div</p>
+                        <div id="stars" class="stars<?php echo $integer?>">
+                            <span class="starRating" data-value="1">&#9733;</span>
+                            <span class="starRating" data-value="2">&#9733;</span>
+                            <span class="starRating" data-value="3">&#9733;</span>
+                            <span class="starRating" data-value="4">&#9733;</span>
+                            <span class="starRating" data-value="5">&#9733;</span>
+                        </div>
                     </div>
                 </div>
-            ";
-        }
-        ?>
+            </div>
+
+        <?php $integer+=1; endforeach; ?>
+
     </div>
 </section>
+<script>
+
+</script>
+<script src="../../javascript/traveller/home.js"></script>
 <script src="../../javascript/traveller/navbar.js"></script>

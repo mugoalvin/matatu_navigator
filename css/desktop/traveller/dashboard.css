@@ -1,8 +1,105 @@
 main {
     width: 80%;
-    background-color: aqua;
+    position: relative;
 }
-main #map{
+
+main #map {
     width: 100%;
-    height: 300px;
+    height: 100%;
+}
+
+#feedback {
+    margin-block: 20px;
+}
+
+#feedback h4 {
+    font-weight: 900;
+}
+
+main #feedbackSection {
+    position: absolute;
+    display: grid;
+    grid-gap: 10px;
+    grid-auto-flow: column;
+    grid-template-columns: repeat(2, 1fr);
+    padding: 2%;
+    bottom: 0;
+    height: 50%;
+    right: -45px;
+    width: 0px;
+    overflow-x: scroll;
+}
+
+main #feedbackSection .card {
+    height: 100%;
+    /* width: 400px; */
+    padding-inline: 1%;
+    overflow: scroll;
+    border: solid 1px var(--black);
+    box-shadow: 0 0 10px var(--black);
+    border-radius: 20px;
+    backdrop-filter: blur(5px);
+}
+
+main #feedbackSection .card h3 {
+    position: sticky;
+    top: 0;
+    color: var(--pinkish);
+    text-align: center;
+    backdrop-filter: blur('10px');
+    /* background-color: blue; */
+}
+main #feedbackSection .card .individualFeedback {
+    margin-block-start: 2%;
+    /* background-color: red; */
+}
+main #feedbackSection .card .individualFeedback #userStar {
+    display: flex;
+    /* justify-content: space-between; */
+    gap: 20px;
+}
+
+main #toggleComment, main #toggledirections{
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    padding-inline-end: 3px;
+    box-shadow: 0 0 10px 0 var(--black);
+    width: 50px;
+    height: 50px;
+    right: 50px;
+    bottom: 50px;
+    z-index: 5;
+    cursor: pointer;
+    backdrop-filter: blur(5px);
+}
+main #toggledirections {
+    top: 50px;
+}
+
+main #toggleComment ion-icon, main #toggledirections ion-icon{
+    width: 50%;
+    height: 50%;
+    color: var(--pinkish);
+}
+main #directionSection {
+    position: absolute;
+    top: 10px;
+    right: 0;
+    width: 40%;
+    transform: translateX(440px);
+    overflow-y: scroll;
+    box-shadow: 0 0 10px var(--black);
+    border-radius: 10px;
+    max-height: 90%;
+    text-wrap: nowrap;
+    backdrop-filter: blur('5px');
+}
+main #directionSection h3{
+    position: sticky;
+    top: 0;
+    background-color: #fff;
+    text-align: center;
 }

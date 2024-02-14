@@ -1,7 +1,8 @@
 <?php
 session_start();
 
-$matatuDetails = include("../../controller/manager/json.php");
+$matatuDetails = (include("../../controller/manager/json.php"))[0];
+
 
 if ($matatuDetails) {
     $_SESSION['isMatatuSelected'] = true;
@@ -26,6 +27,8 @@ else {
     <header>
         <div>
             First Div
+            <?php
+            ?>
         </div>
 
         <div id="selectedMatatu">

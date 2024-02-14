@@ -1,10 +1,11 @@
 <?php
 session_start();
 
-error_reporting(E_ALL);
-ini_set("display_errors" , 1);
+// error_reporting(E_ALL);
+// ini_set("display_errors" , 1);
 
 include('../../model/traveller/class.php');
+include('../../model/feedback/class.php');
 
 print_r($_POST);
 
@@ -21,6 +22,9 @@ print_r($_POST);
 $departure = $_POST['departure'];
 $destination = $_POST['destination'];
 
+$_SESSION['departureCity'] = $_POST['departure'];
+$_SESSION['destinationCity'] = $_POST['destination'];
+
 echo '<br>';
 echo '<br>';
 print_r($departure);
@@ -31,10 +35,18 @@ echo '<br>';
 
 
 $newClassObj = new travellerClass;
+$feedbackObject = new feedbackClass;
 $_SESSION['availableMatatus'] = $newClassObj->getMatatuResults($departure, $destination);
+
+$feedbackArray = [];
 foreach ($_SESSION['availableMatatus'] as $matatu) {
-    print_r($matatu);
-    echo '<br>';
+    $answers = $feedbackObject->selectWhereId($matatu->route_id);
+    foreach ($answers as $answer) {
+        print_r($answer);
+        array_push($feedbackArray, $answer);
+        echo '<br>';
+    }
+    $_SESSION['feedbacks'] = $feedbackArray;
     echo '<br>';
 }
 

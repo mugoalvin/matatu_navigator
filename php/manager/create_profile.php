@@ -21,6 +21,10 @@
         <form action="../../controller/manager/newProfile_proc.php" method="post">
             <h2>Create Matatu Profile</h2>
             <div>
+                <label>Matatu Company id</label>
+                <input type="number" name="company_id" readonly value=<?php echo $_SESSION["loginInManager"]->id?>>
+            </div>
+            <div>
                 <label>Matatu Company Name</label>
                 <input type="text" name="name">
             </div>
