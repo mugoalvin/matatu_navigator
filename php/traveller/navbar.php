@@ -3,7 +3,6 @@ session_start();
 include('../../model/manager/class.php');
 $feedback = $_SESSION['feedbacks'];
 
-
 if (!$_SESSION["loginInUser"]) {
     header("Location: ../login.php");
 }
