@@ -19,10 +19,26 @@ class DBO {
         $stmt->bindParam(':feedback', $obj->feedback);
         try {
             $stmt->execute();
+            return true;
         }
         catch (Throwable $th) {
             throw $th;
         }
+    }
+
+    function selectByUserNameAndPassword($obj) {
+        $selectCommand = "SELECT * FROM travellers WHERE username = :username AND password = md5(:password)";
+        $stmt = $this->conn->prepare($selectCommand);
+        $stmt->bindParam(':username', $obj->username, PDO::PARAM_STR);
+        $stmt->bindParam(':password', $obj->password, PDO::PARAM_STR);
+        try {
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_OBJ);
+        }
+        catch (Throwable $th) {
+            throw $th;
+        }
+
     }
 
     function selectAllWhere($id) {

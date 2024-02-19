@@ -1,41 +1,75 @@
 main {
     display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    padding: 1%;
+    background-color: var(--white);
+}
+main #formDiv{
+    display: flex;
     width: 100%;
     justify-content: center;
+    align-items: center;
     padding: 1%;
-    background-color: aqua;
 }
-form {
+main .form {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 60%;
-    /* margin-block-start: 10%; */
 }
-form div{
+main .form div{
     display: flex;
     flex-direction: column;
     width: 70%;
     margin: 2%;
 }
-form div input, form div select{
+main .form div input, main .form div select{
     height: 2.5em;
     border: solid 1px var(--black);
     border-radius: 0.5em;
     padding-inline: 1%;
 }
-form .formBtn{
-    height: 2em;
-    min-width: auto;
+main .form div label{
+    min-width: 25%;
+    width: auto;
+}
+main .form div span{
+    height: 2.5em;
+    border-radius: 0.5em;
     padding-inline: 1%;
 }
-main > div {
+main .form .formBtn{
+    height: 2.5em;
+    min-width: auto;
+    padding-inline: 1%;
+    border: 0;
+    border-radius: 0.5em;
+    color: var(--white);
+    cursor: pointer;
+    background-color: var(--primaryColor);
+}
+main .form #buttonDiv {
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 10px;
+}
+main .form > #buttonDiv .formBtn{
+    width: 100%;
+    cursor: pointer;
+}
+main #mapDiv {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 50%;
 }
-main > div #map {
+main #mapDiv #map {
     width: 100%;
     height: 500px;
+}
+main div:last-child p{
+    color: var(--black);
 }

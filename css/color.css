@@ -9,10 +9,18 @@
     --lines : #76acdd;
     --pinkish: #ff385c;
     --orange: #ffa500;
-
+    --purple: #7939ef;
+    
+    --overallBackground: #ebecf0;
+    --sidebarsidebar: #f3f4f8;
     --formBackground: #e9e9ed;
-
+    
     --darkText: #6b6b6b;
     --darkBackground: #1f1f1f;
     --darkerBackground: #181818;
+
+
+
+    --primaryColor: var(--purple);
+    --secondaryColor: ;
 }

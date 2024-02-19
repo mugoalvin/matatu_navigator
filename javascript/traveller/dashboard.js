@@ -6,12 +6,16 @@ let destinationObj = {
 
 getCurrentLocation().then(function (currentLocation) {
     // Near Nakuru
-    // currentLocation.latitude = -0.2797014315110278
-    // currentLocation.longitude = 36.077263735725516
+    currentLocation.latitude = -0.2797014315110278
+    currentLocation.longitude = 36.077263735725516
     
     // Kabarak Library
     // currentLocation.latitude = -0.16858708483176738, 
     // currentLocation.longitude = 35.966359953031706
+
+    // Mombasa
+    // currentLocation.latitude = -4.043546429025343
+    // currentLocation.longitude = 39.667801146705806
     
     displayMap(currentLocation).then((mapData) => {
         const matatuOptions = querySelectorAll("#matatuOption");

@@ -1,255 +1,169 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    color: var(--black);
-}
-/* @font-face {
-    font-family: Marysvile;
-    src: url(/fonts/Marysville\ Demo.ttf) format('ttf');
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: var(--black);
+  transition: 300ms;
 }
 @font-face {
-    font-family: AlexBrush;
-    src: url(/fonts/AlexBrush-Regular.ttf);
-} */
-@font-face {
-    font-family: Anurati;
-    src: url(/fonts/WeddingdayPersonalUseRegular-1Gvo0.ttf);
+  font-family: "Anurati";
+  src: url(/fonts/WeddingdayPersonalUseRegular-1Gvo0.ttf);
 }
-
-
 
 body {
-    height: 100vh;
-    display: flex;
+  height: 100vh;
+  display: flex;
+  background-color: var(--overallBackground);
 }
-body header{
-    display: flex;
-    position: absolute;
-    width: 100%;
-    top: 0%;
-    align-items: center;
-    justify-content: space-between;
-    padding-inline: 1vw;
-    height: 7vh;
-    padding-block: 2vh;
+body header {
+  display: flex;
+  position: absolute;
+  width: 100%;
+  top: 0%;
+  align-items: center;
+  justify-content: space-between;
+  padding-inline: 1vw;
+  height: 7vh;
+  padding-block: 2vh;
+  z-index: 1;
+  background-color: var(--overallBackground);
 }
-body #sideBar, body main {
-    margin-block-start: 7vh;
-    padding-inline: 1vw;
+body header h3 {
+  font-family: "waterfall";
+  text-shadow: 0 0 5px var(--primaryColor);
+  font-size: 40px;
+}
+body header #selectedMatatu {
+  font-family: "Times New Roman", Times, serif;
+  /* font-family: 'Neonderthaw'; */
+  font-size: 5vh;
+}
+
+body header > div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  gap: 15px;
+}
+body header > div #user {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  gap: 10px;
+  border-radius: 20px;
+  padding-block: 5px;
+  padding-inline: 10px;
+  box-shadow: 0 0 10px 0 var(--black);
+}
+body header > div ion-icon {
+  color: var(--black);
+  height: 20px;
+  width: 20px;
+}
+#dropDown button {
+  display: flex;
+  position: absolute;
+  align-items: center;
+  gap: 5px;
+  width: 100%;
+  z-index: 1;
+  border-radius: 5px;
+  padding-block: 5px;
+  padding-inline: 10px;
+  border: 0;
+  box-shadow: 0 0 10px 0 var(--black);
+  background-color: #fff;
+  cursor: pointer;
+}
+
+#dropDown button {
+  padding: 0;
+  height: 0;
+  color: transparent;
+}
+#dropDown ion-icon {
+  color: transparent;
+}
+
+
+/* =====================SideBar===================== */
+
+body #sideBar {
+  height: 93vh;
+  width: 20%;
+  padding-block-start: 0.5vw;
+  padding-block-end: 1vw;
+  padding-inline: 1vw;
+  z-index: 0;
+  background-color: var(--overallBackground);
+}
+body #sideBar > div{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 7vh;
+}
+body #sideBar > div ion-icon{
+  height: 100%;
+  width: 12%;
+  cursor: pointer;
+}
+body #sideBar > .links {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  position: relative;
+  gap: 5%;
+  padding-block: 2vh;
+  padding-inline: 1vw;
+  margin-block: 1vh;
+  height: 50px;
+  border-radius: 10px;
+}
+body #sideBar > .links:hover {
+  background-color: var(--white);
+  box-shadow: 2px 2px 5px 0 var(--black);
+}
+body #sideBar > .links:hover::before {
+  content: ' ';
+  position: absolute;
+  width: 5px;
+  height: 50%;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  left: 0;
+  background-color: var(--primaryColor);
+}
+body #sideBar > .links:hover ion-icon{
+  color: var(--primaryColor);
+}
+body #sideBar > .links:hover span{
+  color: var(--primaryColor);
+}
+body #sideBar > .links ion-icon{
+  display: flex;
+  height: 100%;
+  width: 15%;
+}
+body #sideBar > .links span {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+body #sideBar,
+main {
+  margin-block-start: 7vh;
+  padding-inline: 1vw;
 }
 body main {
-    width: 80%;
-    padding-block-start: 1vw;
+  width: 80%;
+  height: 91vh;
+  padding-block-start: 1vw;
+  border-radius: 20px;
+  margin-inline: 10px;
+  margin-block-start: 8vh;
+  border: solid 2px var(--darkText);
 }
-body header #selectedMatatu{
-    font-family: 'Times New Roman', Times, serif;
-    font-size: 5vh;
-}
-body  #sideBar {
-    height: 93vh;
-    width: 20%;
-    padding-block-end: 1vw;
-    padding-inline: 1vw;
-    background-color: #999;
-}
-body  #sideBar > div{
-    display: flex;
-    align-items: center;
-    gap: 10%;
-    padding-block: 2vh;
-    margin-block: 1vh;
-}
-body  #sideBar > div:hover{
-    background-color: aqua;
-}
-body  #sideBar > div a{
-    height: 100%;
-    width: 100%;
-    text-decoration: none;
-}
-
-
-/* * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    transition: 300ms;
-    transition-timing-function: ease-in;
-  }
-  body {
-    display: flex;
-    height: 100vh;
-    overflow: hidden;
-  } */
-  
-  /* body header {
-    display: flex;
-    position: absolute;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    height: 10vh;
-    padding-inline: 1vw;
-    box-shadow: 0 0 10px 2px var(--black);
-  }
-  body header ion-icon{
-    cursor: pointer;
-    scale: 1.2;
-  }
-  body header h3{
-    font-family: "waterfall";
-    text-shadow: 0 0 5px var(--pinkish);
-    font-size: 40px;
-  }
-  body header > form {
-    display: flex;
-    gap: 10px;
-    height: 40px;
-    border-radius: 20px;
-    background-color: var(--formBackground);
-    box-shadow: 0 0 10px 10px var(--black);
-    box-shadow: 0 0 5px 1px var(--black);
-  }
-  body header > form *{
-    border: 0;
-    height: 100%;
-  }
-  body header > form select {
-    width: 12vw;
-    padding-inline: 10px;
-    border: 0;
-  } */
-  
-  /* body header > form select:first-child {
-    border-top-left-radius: 20px;
-    border-bottom-left-radius: 20px;
-  }
-  
-  body header > form select:last-child {
-    border-top-right-radius: 20px;
-    border-bottom-right-radius: 20px;
-  }
-  
-  body header > form .input {
-    width: 40px;
-    border-radius: 50%;
-    padding-inline: 5px;
-    background-color: var(--pinkish);
-  }
-  body header > form .input ion-icon{
-    height: 50%;
-    width: 50%;
-  }
-  body header > div {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 100%;
-    gap: 15px;
-  }
-  body header > div #user{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    gap: 10px;
-    border-radius: 20px;
-    padding-block: 5px;
-    padding-inline: 10px;
-    box-shadow: 0 0 10px 0 var(--black);
-  }
-  body header > div ion-icon {
-    color: var(--black);
-    height: 20px;
-    width: 20px;
-  }
-  #dropDown button{
-    display: flex;
-    position: absolute;
-    align-items: center;
-    gap: 5px;
-    width: 100%;
-    z-index: 1;
-    border-radius: 5px;
-    padding-block: 5px;
-    padding-inline: 10px;
-    border: 0;
-    box-shadow: 0 0 10px 0 var(--black);
-    background-color: #fff;
-    cursor: pointer;
-  }
-  
-  #dropDown button{
-    padding: 0;
-    height: 0;
-    color: transparent;
-  }
-  #dropDown ion-icon{
-    color: transparent;
-  }
-  
-  body #sideBar {
-    overflow: hidden;
-    width: 20%;
-    border-inline-end: solid 1px var(--black);
-    box-shadow: 0 10px 10px var(--black);
-  }
-  body #sideBar h3 {
-    text-align: center;
-  }
-  body #sideBar #matatuOptions {
-    height: 100%;
-    overflow-y: scroll;
-  }
-  body #sideBar #matatuOptions #matatuOption {
-    display: flex;
-    margin-block-start: 2vh;
-    border-radius: 15px;
-  }
-  body #sideBar #matatuOptions #matatuOption:hover {
-    background-color: var(--pinkish);
-  }
-  body #sideBar #matatuOptions #matatuOption img {
-    max-width: 70px;
-    border-radius: 20%;
-  }
-  body #sideBar #matatuOptions #matatuOption #details {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding-inline: 5%;
-    width: 100%;
-  }
-  body #sideBar #matatuOptions #matatuOption #details #departure_name{
-    font-family: 'Times New Roman', Times, serif;
-  }
-  body #sideBar #matatuOptions #matatuOption #details #price{
-    font-family: 'Times New Roman', Times, serif;
-  }
-  body #sideBar #matatuOptions #matatuOption #details #starsDiv{
-    display: flex;
-    justify-content: space-between;
-    font-family: 'Times New Roman', Times, serif;
-  }
-  body #sideBar #matatuOptions #matatuOption #details #starsDiv p{
-    margin-inline-end: 5px;
-    font-size: 14px;
-  }
-  body #sideBar #matatuOptions #matatuOption #details #starsDiv #stars {
-    display: flex;
-  }
-  body #sideBar #matatuOptions #matatuOption #details #starsDiv #stars .starRating {
-    display: flex;
-    font-size: 16px;
-    cursor: pointer;
-  }
-  
-  .starRating:hover, .starRating.active {
-    color: var(--orange);
-  }
-  
-  body #sideBar, main {
-    margin-block-start: 10vh;
-    padding: 1vw;
-  } */

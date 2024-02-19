@@ -41,7 +41,6 @@ class adminDBO{
     }
 
     function selectAll($tableName) {
-        // $command = "SELECT * FROM $tableName";
         $command = "SELECT * FROM $tableName";
         $stmt = $this->conn->prepare($command);
         try {
@@ -67,8 +66,6 @@ class adminDBO{
 
     function insertToManagers($obj) {
         $command = "INSERT INTO managers(company_id, first_name, last_name, username) VALUES(:company_id, :first_name, :last_name, :username)";
-        // $command = "INSERT INTO managers(company_id, first_name, last_name, username) VALUES($obj->company_id, '$obj->first_name', '$obj->last_name', '$obj->username')";
-
         $stmt = $this->conn->prepare($command);
         $stmt->bindParam(":company_id", $obj->company_id);
         $stmt->bindParam(":first_name", $obj->first_name);

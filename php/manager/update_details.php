@@ -1,15 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php
+include("navbar.php");
+$descTableResult = include('../../controller/manager/descMatatuCompanies.php');
+?>
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Update Matatu Details</title>
 
-    <link rel="stylesheet" href="../../css/color.css">
-    <link rel="stylesheet" href="../../css/desktop/manager/dashboard.css">
     <link rel="stylesheet" href="../../css/desktop/manager/create_profile.css">
-
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
@@ -19,49 +18,45 @@
 
 </head>
 
-<body>
-    <?php
-
-    include("navbar.php");
-
-    $descTableResult = include('../../controller/manager/descMatatuCompanies.php');
-
-    ?>
     <script>
         let selectedMatatu = <?php echo json_encode($matatuDetails); ?>;
     </script>
     <main>
-        <form action="../../controller/manager/update_profile.php" method="post">
-            <h2>Update Matatu Details</h2>
-            <?php
+        <div id="formDiv">
+            <form class="form" action="../../controller/manager/update_profile.php" method="post">
+                <h2>Update Matatu Details</h2>
+                <?php
+                foreach ($descTableResult as $key => $value) :
+                    if ($value->Field == 'id') {
+                        continue;
+                    }
+                    $valueField = $value->Field;
+                    $inputBoxValue = $_SESSION['matatuDetails']->$valueField;
 
-            foreach ($descTableResult as $key => $value) {
-                // if ($value->Field == 'id') {
-                //     continue;
-                // }
-                $valueField = $value->Field;
-                $inputBoxValue = $_SESSION['matatuDetails']->$valueField;
-
-                echo "
-                <div id='$value->Field$value->Field'>
-                    <label>$value->Field</label>
+                ?>
+                <div id='<?php echo $value->Field.$value->Field?>'>
+                    <label><?php echo $value->Field?></label>
                     <input
                         type='text' 
-                        id='$value->Field' 
-                        name='$value->Field' 
-                        value='$inputBoxValue'
+                        id='<?php echo $value->Field?>' 
+                        name='<?php echo $value->Field?>' 
+                        value='<?php echo $inputBoxValue?>'
                     >
                 </div>
-                ";
-            }
-            ?>
-            <input type="submit" value="Submit" class="formBtn" id="submitBtn">
-        </form>
+                
+                <?php endforeach ?>
+                <div>
+                    <input type="submit" value="Submit" class="formBtn" id="submitBtn">
+                </div>
+            </form>
+            <div id="mapDiv">
+                <section id="map"></section>
+            </div>
+        </div>
         <div>
-            <section id="map"></section>
+            <p><strong>NB: </strong>Locate on the map presented to fill the Latitude and the Longitude inputs.</p>
         </div>
     </main>
     <script src="../../javascript/manager/home.js"></script>
-</body>
 
 </html>

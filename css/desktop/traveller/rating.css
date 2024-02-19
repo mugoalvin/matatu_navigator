@@ -3,7 +3,6 @@ main {
     width: 100%;
     justify-content: center;
     padding: 1%;
-    background-color: aqua;
 }
 #ratingForm {
     display: flex;

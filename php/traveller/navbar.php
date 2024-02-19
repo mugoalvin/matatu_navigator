@@ -3,20 +3,22 @@ session_start();
 include('../../model/manager/class.php');
 $feedback = $_SESSION['feedbacks'];
 
+
 if (!$_SESSION["loginInUser"]) {
     header("Location: ../login.php");
 }
 // ==========================If rating is saved==========================
-if ($_SESSION['isRaringSaved']) { ?>
+if ($_SESSION['isRatingSaved']) { ?>
     <script>
-        alert('Data is successfully saved')
+        alert('Feedback is successfully saved')
     </script>
 <?php }
-$_SESSION['isRaringSaved'] = false;
+$_SESSION['isRatingSaved'] = false;
 // ================================================================
 
 $_SESSION["allMatatus"] = include('../../controller/manager/getTableData.php');
 ?>
+<html lang="en">
 
 <script>
     var feedbacks = <?php echo json_encode($feedback) ?>;
@@ -31,6 +33,7 @@ $_SESSION["allMatatus"] = include('../../controller/manager/getTableData.php');
 <head>
     <link rel="stylesheet" href="../../css/color.css">
     <link rel="stylesheet" href="../../css/desktop/traveller/navbar.css">
+    <link rel="stylesheet" href="../../css/mobile/traveller/navbar.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -44,14 +47,13 @@ $_SESSION["allMatatus"] = include('../../controller/manager/getTableData.php');
 <header id="navbarHeader">
     <div>
         <ion-icon name="menu"></ion-icon>
-        <h3>Matatu Assistant</h3>
+        <h3>Matatu Navigator</h3>
     </div>
     <form action="../../controller/traveller/getAvailableMatatus.php" method="post" id="formDesDep">
         <select name="departure" id="departure">
             <option selected disabled>Choose Departure</option>
             <?php
             $cities = array();
-
             foreach ($_SESSION["allMatatus"] as $matatu) {
                 if (in_array($matatu->city, $cities)) {
                     continue;
@@ -104,7 +106,7 @@ $_SESSION["allMatatus"] = include('../../controller/manager/getTableData.php');
             var availableMatatusObj = <?php echo json_encode($_SESSION['availableMatatus']) ?>
         </script>
 
-        <?php 
+        <?php
         $integer = 0;
         foreach ($_SESSION['availableMatatus'] as $availableMatatu): ?>
             <div id='matatuOption'>
@@ -120,8 +122,8 @@ $_SESSION["allMatatus"] = include('../../controller/manager/getTableData.php');
                         <?php echo $availableMatatu->route_id ?>
                     </p>
                     <div id="starsDiv">
-                        <p id="paragraph<?php echo $integer?>" class="paragraph<?php echo $integer?>">Div</p>
-                        <div id="stars" class="stars<?php echo $integer?>">
+                        <p id="paragraph<?php echo $integer ?>" class="paragraph<?php echo $integer ?>">Div</p>
+                        <div id="stars" class="stars<?php echo $integer ?>">
                             <span class="starRating" data-value="1">&#9733;</span>
                             <span class="starRating" data-value="2">&#9733;</span>
                             <span class="starRating" data-value="3">&#9733;</span>
@@ -132,7 +134,7 @@ $_SESSION["allMatatus"] = include('../../controller/manager/getTableData.php');
                 </div>
             </div>
 
-        <?php $integer+=1; endforeach; ?>
+            <?php $integer += 1; endforeach; ?>
 
     </div>
 </section>
@@ -141,3 +143,6 @@ $_SESSION["allMatatus"] = include('../../controller/manager/getTableData.php');
 </script>
 <script src="../../javascript/traveller/home.js"></script>
 <script src="../../javascript/traveller/navbar.js"></script>
+
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>

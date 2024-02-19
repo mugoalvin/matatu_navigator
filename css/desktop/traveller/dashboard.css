@@ -32,7 +32,7 @@ main #feedbackSection {
 
 main #feedbackSection .card {
     height: 100%;
-    /* width: 400px; */
+    width: 400px;
     padding-inline: 1%;
     overflow: scroll;
     border: solid 1px var(--black);
@@ -44,10 +44,9 @@ main #feedbackSection .card {
 main #feedbackSection .card h3 {
     position: sticky;
     top: 0;
-    color: var(--pinkish);
+    color: var(--primaryColor);
     text-align: center;
     backdrop-filter: blur('10px');
-    /* background-color: blue; */
 }
 main #feedbackSection .card .individualFeedback {
     margin-block-start: 2%;
@@ -82,7 +81,7 @@ main #toggledirections {
 main #toggleComment ion-icon, main #toggledirections ion-icon{
     width: 50%;
     height: 50%;
-    color: var(--pinkish);
+    color: var(--primaryColor);
 }
 main #directionSection {
     position: absolute;

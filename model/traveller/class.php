@@ -10,12 +10,17 @@ class travellerClass {
     
     function addFeedback($obj) {
         $newObj = new DBO;
-        $newObj->addFeedback($obj);
+        return $newObj->addFeedback($obj);
     }
     
     function selectWhereId($id) {
         $newObj = new DBO;
         return $newObj->selectAllWhere($id);
+    }
+
+    function selectByUserNameAndPassword($obj) {
+        $newObj = new DBO;
+        return $newObj->selectByUserNameAndPassword($obj);
     }
 }
 ?>

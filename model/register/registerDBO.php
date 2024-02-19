@@ -16,10 +16,10 @@ class registerDBO {
     }
 
     function insert($obj) {
-        $command = "INSERT INTO travellers (first_name, last_name, username, email, password, age) VALUE(:fname, :lname, :username, :email, :password, :age)";
+        $command = "INSERT INTO travellers (first_name, last_name, username, email, password, age) VALUE(:fname, :lname, :username, :email, md5(:password), :age)";
         $stmt = $this->conn->prepare($command);
-        $stmt->bindParam(":fname", $obj->fname);
-        $stmt->bindParam(":lname", $obj->lname);
+        $stmt->bindParam(":fname", $obj->first_name);
+        $stmt->bindParam(":lname", $obj->last_name);
         $stmt->bindParam(":username", $obj->username);
         $stmt->bindParam(":email", $obj->email);
         $stmt->bindParam(":password", $obj->password);
@@ -31,16 +31,6 @@ class registerDBO {
         }
         catch (PDOException $e) {
             echo "<br>Failed: ". $e->getMessage() ."<br>";
-        }
-    }
-    function insertAgain() {
-        $command = "INSERT INTO travellers(first_name, last_name, username, email, password, age) VALUE('Maureen', 'Kansimey', 'Rugambeiuy', 'ruga@gmail.com', 'alvinlove' ,22)";
-        $stmt = $this->conn->prepare($command);
-        try {
-            $stmt->execute();
-        }
-        catch (Throwable $th) {
-            throw $th;
         }
     }
 }

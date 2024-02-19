@@ -1,90 +1,55 @@
-<!DOCTYPE html>
-<html lang="en">
-
+<?php
+include("navbar.php");
+$descTableResult = include('../../controller/manager/descMatatuCompanies.php');
+$_SESSION['isMatatuSelected'] = !$matatuDetails && $descTableResult ? false : true;
+?>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-
+    <title>Delete Profile</title>
     <link rel="stylesheet" href="../../css/color.css">
-    <link rel="stylesheet" href="../../css/desktop/manager/dashboard.css">
     <link rel="stylesheet" href="../../css/desktop/manager/create_profile.css">
-
 </head>
 
-<body>
-    <?php
-
-    include("navbar.php");
-
-
-    $descTableResult = include('../../controller/manager/descMatatuCompanies.php');
-
-
-    if (!$matatuDetails && $descTableResult) {
-        $_SESSION['isMatatuSelected'] = false;
-    } else {
-        $_SESSION['isMatatuSelected'] = true;
-    }
-
-    ?>
-    <main>
-        <style>
-            #data {
-                display: block;
+<main>
+    <form class="form" action="../../controller/manager/deleteProfile_proc.php" method="post">
+        <h2>What you are about to delete</h2>
+        <?php
+        foreach ($descTableResult as $key => $value) {
+            if ($value->Field == 'id') {
+                $_SESSION['idToDelete'] = $matatuDetails->{$value->Field};
+                continue;
             }
-
-            #data label {
-                margin-inline-end: 3%;
-            }
-
-            #buttonDiv {
-                flex-direction: row;
-                justify-content: center;
-                gap: 10%;
-            }
-
-            #buttonDiv>.btns {
-                min-width: auto;
-                padding: 1% 2% 1% 2%;
-                border: solid 1px var(--black);
-            }
-        </style>
-        <form action="../../controller/manager/deleteProfile_proc.php" method="post">
-            <h2>What you are about to delete</h2>
-
-            <?php
-
-            foreach ($descTableResult as $key => $value) {
-                // if ($value->Field == 'id') {
-                //     continue;
-                // }
-                $valueField = $value->Field;
-                $inputBoxValue = $matatuDetails->$valueField;
-                echo "
-                <div id='data'>
-                    <label id='label'>$valueField: </label>
-                    <input name='$valueField' value = '$inputBoxValue'>
-                </div>
-                ";
-            }
+            $inputBoxValue = $matatuDetails->{$value->Field};
             ?>
-            <div id='buttonDiv'>
-                <input type="submit" value="Delete" class="btns" id="deleteBtn">
-                <input type="button" value="Cancel" class="btns" onclick="cancelDelete()">
+            <style>
+                #data {
+                    flex-direction: row;
+                }
+                /* #data label {
+                    width: 25%;
+                } */
+            </style>
+            <div id='data'>
+            <!-- <div> -->
+                <label id='label'><?php echo $value->Field?>:</label>
+                <span><?php echo $inputBoxValue?></span>
+                <!-- <input type="text" value="<?php echo $inputBoxValue?>"> -->
             </div>
-        </form>
-    </main>
-    <script>
-        document.querySelectorAll('#label').forEach(label => {
-            label.style.fontWeight = 900
-            label.innerText = label.innerText.charAt(0).toUpperCase() + label.innerText.slice(1);
-        });
+        <?php } ?>
+        <div id='buttonDiv'>
+            <input type="submit" value="Delete" class="formBtn" id="deleteBtn">
+            <input type="button" value="Cancel" class="formBtn" onclick="cancelDelete()">
+        </div>
+    </form>
+</main>
+<script>
+    document.querySelectorAll('#label').forEach(label => {
+        label.innerText = label.innerText.charAt(0).toUpperCase() + label.innerText.slice(1);
+    });
 
-        function cancelDelete() {
-            alert('Delete operation canceled.');
-        }
-    </script>
-</body>
+    function cancelDelete() {
+        alert('Delete operation canceled.');
+        location.href = "home.php"
+    }
+</script>
 
 </html>

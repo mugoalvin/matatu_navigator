@@ -18,7 +18,7 @@ CREATE TABLE
         first_name VARCHAR(20),
         last_name VARCHAR(20),
         username VARCHAR(20),
-        password VARCHAR(15)
+        password VARCHAR(50)
     );
 
 DROP TABLE IF EXISTS routes;
@@ -40,7 +40,7 @@ CREATE TABLE travellers(
     last_name VARCHAR(10),
     username VARCHAR(15),
     email VARCHAR(30),
-    password VARCHAR(20),
+    password VARCHAR(50),
     age INT
 );
 

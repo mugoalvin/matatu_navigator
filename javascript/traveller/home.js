@@ -237,12 +237,10 @@ function generateFeedbackCards(feedbackData) {
       cardsHTML += `<div class="individualFeedback">
           <div id="userStar">
             <h4>${feedback.username}</h4>
-            <p>${feedback.rating}</p>
-            <p>stars${integer}</p>
             <div id="stars" class="stars${integer}">
               <span class="feedbackstarRating" data-value="1">&#9733;</span>
               <span class="feedbackstarRating" data-value="2">&#9733;</span>
-              <span active class="feedbackstarRating" data-value="3">&#9733;</span>
+              <span class="feedbackstarRating" data-value="3">&#9733;</span>
               <span class="feedbackstarRating" data-value="4">&#9733;</span>
               <span class="feedbackstarRating" data-value="5">&#9733;</span>
             </div>

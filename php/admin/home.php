@@ -1,7 +1,9 @@
 <?php
 include("navbar.php");
 ?>
+
 <head>
+    <title>Databases</title>
     <link rel="stylesheet" href="../../css/desktop/admin/home.css">
 </head>
 <main>
@@ -20,30 +22,18 @@ include("navbar.php");
         <button>Click Me</button>
     </form>
 
-    <table border="1">
+    <table class="table table-striped table-hover">
         <tr>
-            <?php
-                foreach ($_SESSION['tableColumns'] as $column) {
-                    echo "
-                    <th>$column</th>
-                    ";
-                }            
-            ?>
+            <?php foreach ($_SESSION['tableColumns'] as $column) :?>
+                    <th><?php echo $column ?></th>
+            <?php endforeach?>
         </tr>
-        <?php
-            foreach ($_SESSION['tableData'] as $row) {
-                ?>
-                <tr>
-                <?php
-                foreach ($row as $cell) {
-                    echo "
-                    <td>$cell</td>
-                    ";
-                }
-                ?>
-                </tr>
-                <?php
-            }        
-        ?>
+        <?php foreach ($_SESSION['tableData'] as $row): ?>
+            <tr>
+                <?php foreach ($row as $cell) : ?>
+                    <td><?php echo $cell?></td>
+                <?php endforeach?>
+            </tr>
+        <?php endforeach;?>
     </table>
 </main>
