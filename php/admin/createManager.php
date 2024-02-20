@@ -1,8 +1,8 @@
 <?php
 include('navbar.php');
 include("../../controller/admin/getLastCompanyID.php");
-
 session_start();
+$_SESSION['newCompanyID'] = $company_id + 1;
 
 // If Manager was added successfully
 if ($_SESSION['isManagerAdded']): ?>
@@ -19,10 +19,6 @@ if ($_SESSION['isManagerAdded']): ?>
     <div id="formDiv">
         <form class="form" action="../../controller/admin/addManager.php" method="post">
             <h2>Create Manager</h2>
-            <div>
-                <label>Company Id:</label>
-                <input type="number" name="company_id" readonly value="<?php echo $company_id + 1 ?>">
-            </div>
             <div>
                 <label>First Name:</label>
                 <input type="text" name="first_name">

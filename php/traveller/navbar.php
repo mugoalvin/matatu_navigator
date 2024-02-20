@@ -101,16 +101,21 @@ $_SESSION["allMatatus"] = include('../../controller/manager/getTableData.php');
 <section id="sideBar">
     <h3>Available Matatus</h3>
     <hr>
-    <div id='matatuOptions'>
+    
+    <!-- Will remove the styling below -->
+    <div id='matatuOptions' style="font-size: 12px">
         <script>
             var availableMatatusObj = <?php echo json_encode($_SESSION['availableMatatus']) ?>
         </script>
 
         <?php
         $integer = 0;
-        foreach ($_SESSION['availableMatatus'] as $availableMatatu): ?>
+        foreach ($_SESSION['availableMatatus'] as $availableMatatu): 
+        // print_r($availableMatatu);
+        // echo "../../images/$availableMatatu->departure_image";
+        ?>
             <div id='matatuOption'>
-                <img src='../../images/cool-background.png' alt=''>
+                <img src='../../images/<?php echo ($availableMatatu->departure_image) ? $availableMatatu->departure_image :  $availableMatatu->destination_image?>' alt='Matatu Image Here'>
                 <div id='details'>
                     <snap id='departure_name' class='departure_name'>
                         <?php echo $availableMatatu->departure_name ?>

@@ -2,7 +2,7 @@
 include("../../model/admin/adminClass.php");
 
 session_start();
-print_r($_POST);
+$_POST['company_id'] = $_SESSION['newCompanyID'];
 
 $insertObj = new adminClass;
 if ($insertObj->insertToManagers((object)$_POST) ) {

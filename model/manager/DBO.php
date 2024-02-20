@@ -97,13 +97,14 @@ class DBO {
             name = '$obj->name',
             latitude = $obj->latitude,
             longitude = $obj->longitude,
-            city = '$obj->city'
-
+            city = '$obj->city',
+            imagePath = '$obj->image'
         WHERE id = $obj->id";
 
         $stmt = $this->conn->prepare($updateCommand);
         try {
             $stmt->execute();
+            return true;
         }
         catch (Throwable $th) {
             throw $th;

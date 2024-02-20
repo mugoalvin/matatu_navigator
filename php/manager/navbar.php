@@ -43,6 +43,13 @@ if ($_SESSION['isMatatuProfileUpdated']): ?>
     </script>
 <?php endif; $_SESSION['isRouteAdded'] = false ?>
 
+<!-- If image wasn't uploaded -->
+<?php if($_SESSION['noImageUploaded']) : ?>
+<script>
+    alert("No image was uploaded or there is an error with the image file")
+</script>
+<?php endif; $_SESSION['noImageUploaded'] = false?>
+
 <!DOCTYPE html>
 <html lang="en">
 

@@ -45,7 +45,7 @@ class managerClass {
 
     function updateProfile($obj, $tableName) {
         $dboObj = new DBO;
-        $dboObj->update($obj, $tableName);
+        return $dboObj->update($obj, $tableName);
     }
     
     function deleteFromTable($tableName, $id) {
