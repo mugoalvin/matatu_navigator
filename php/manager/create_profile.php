@@ -1,28 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+<?php
+include("navbar.php");
+?>
 
-    <link rel="stylesheet" href="../../css/color.css">
-    <link rel="stylesheet" href="../../css/desktop/manager/dashboard.css">
+<head>
+    <title>Create Profile</title>
     <link rel="stylesheet" href="../../css/desktop/manager/create_profile.css">
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-
 </head>
-<body>
-    <?php 
-    include("navbar.php");
-    ?>
-    <main>
-        <form action="../../controller/manager/newProfile_proc.php" method="post">
+
+<main>
+    <div id="formDiv">
+        <form class="form" action="../../controller/manager/newProfile_proc.php" method="post">
             <h2>Create Matatu Profile</h2>
             <div>
                 <label>Matatu Company id</label>
-                <input type="number" name="company_id" readonly value=<?php echo $_SESSION["loginInManager"]->id?>>
+                <input type="number" name="company_id" readonly value=<?php echo $_SESSION["loginInManager"]->id ?>>
             </div>
             <div>
                 <label>Matatu Company Name</label>
@@ -42,10 +36,14 @@
             </div>
             <input type="submit" value="Create Profile" class="formBtn" id="createBtn">
         </form>
-        <div>
+        <div id="mapDiv">
             <section id="map"></section>
         </div>
-    </main>
-    <script src="../../javascript/manager/createProfile.js"></script>
-</body>
+    </div>
+    <div>
+        <p><strong>NB: </strong>Locate on the map presented to fill the Latitude and the Longitude inputs.</p>
+    </div>
+</main>
+<script src="../../javascript/manager/createProfile.js"></script>
+
 </html>

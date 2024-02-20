@@ -46,7 +46,6 @@ class DBO {
     }
 
     function selectAllExcept($tableName, $city) {
-        // $getMatatuDetailsCommand = "SELECT * FROM $tableName WHERE city != '$city' ";
         $getMatatuDetailsCommand = "SELECT * FROM $tableName";
         $stmt = $this->conn->prepare($getMatatuDetailsCommand);
         try {
@@ -69,7 +68,6 @@ class DBO {
         }
     }
     function select($tableName, $id) {
-        // $getMatatuDetailsCommand = "SELECT * FROM $tableName WHERE id = $id";
         $getMatatuDetailsCommand = "SELECT * FROM $tableName";
         $stmt = $this->conn->prepare($getMatatuDetailsCommand);
         try {
@@ -83,7 +81,6 @@ class DBO {
 
     function selectID($tableName, $id) {
         $getMatatuDetailsCommand = "SELECT * FROM $tableName WHERE id = $id";
-        // $getMatatuDetailsCommand = "SELECT * FROM $tableName";
         $stmt = $this->conn->prepare($getMatatuDetailsCommand);
         try {
             $stmt->execute();
@@ -100,13 +97,14 @@ class DBO {
             name = '$obj->name',
             latitude = $obj->latitude,
             longitude = $obj->longitude,
-            city = '$obj->city'
-
+            city = '$obj->city',
+            imagePath = '$obj->image'
         WHERE id = $obj->id";
 
         $stmt = $this->conn->prepare($updateCommand);
         try {
             $stmt->execute();
+            return true;
         }
         catch (Throwable $th) {
             throw $th;
@@ -118,6 +116,7 @@ class DBO {
         $stmt = $this->conn->prepare($deleteCommand);
         try {
             $stmt->execute();
+            return true;
         }
         catch (Throwable $th) {
             throw $th;
@@ -127,9 +126,8 @@ class DBO {
 
 
 
-
-    function selectManagerAndCompany () {
-        $selectCommand = " SELECT
+function selectManagerAndCompany () {
+    $selectCommand = " SELECT
             matatuCompanies.id,
             matatuCompanies.name,
             matatuCompanies.latitude,
@@ -149,9 +147,9 @@ class DBO {
         } catch (Throwable $th) {
             throw $th;
         }
-
+        
     }
-
+    
     function insertToRoutes($obj) {
         print_r($obj);
         $insertCommand = "INSERT INTO routes (departure_id, destination_id, price, eta) VALUES ($obj->departure, $obj->destination, $obj->price, '$obj->eta')";
@@ -159,13 +157,58 @@ class DBO {
 
         echo $insertCommand;
         $stmt = $this->conn->prepare($insertCommand);
-
+        
         try {
             $stmt->execute();
+            return true;
         }
         catch (Exception $e){
             echo '<br>';
             echo 'Message: ' .$e->getMessage();
         }
     }
+
+
+function updateManagersDetails($obj) {
+    // 1. Validate input object properties
+    if (!is_object($obj) || !property_exists($obj, 'first_name') || !property_exists($obj, 'last_name') || !property_exists($obj, 'username') || !property_exists($obj, 'password') || !property_exists($obj, 'id')) {
+        throw new InvalidArgumentException('Missing required properties in input object.');
+    }
+
+    // 2. Build dynamic SQL statement with placeholders
+    $updateCommand = "UPDATE managers SET";
+    $bindings = [];
+    $isFirst = true; // Flag for initial comma handling
+    foreach (['first_name', 'last_name', 'username', 'password'] as $field) {
+        if (!empty($obj->$field)) { // Check if property has a value
+            if (!$isFirst) {
+                $updateCommand .= ', '; // Add comma for subsequent fields
+            }
+            $isFirst = false;
+            $updateCommand .= " $field = :$field";
+            $bindings[":$field"] = $obj->$field;
+        }
+    }
+
+    // 3. Add WHERE clause with bound parameter
+    $updateCommand .= " WHERE id = :id";
+    $bindings[":id"] = $obj->id;
+
+    try {
+        // 4. Prepare and execute statement using bindings
+        $stmt = $this->conn->prepare($updateCommand);
+        $stmt->execute($bindings);
+
+        // 5. Check for affected rows and return success
+        if ($stmt->rowCount() > 0) {
+            return true;
+        } else {
+            // Handle no rows affected (e.g., record not found)
+            throw new Exception('No managers were updated.');
+        }
+    } catch (\Throwable $th) {
+        // 6. Handle exceptions gracefully
+        throw $th;
+    }
+}
 }

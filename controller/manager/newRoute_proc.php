@@ -27,7 +27,8 @@ print_r($finalInput['destination']);
 
 echo "<br>";
 $classObj = new managerClass;
-$classObj->insertToRoutes((object)$finalInput);
-
-header('Location: ../../php/manager/new_route.php');
+if ($classObj->insertToRoutes((object)$finalInput)) {
+    $_SESSION['isRouteAdded'] = true;   
+    header('Location: ../../php/manager/new_route.php');
+}
 ?>

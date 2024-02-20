@@ -45,12 +45,12 @@ class managerClass {
 
     function updateProfile($obj, $tableName) {
         $dboObj = new DBO;
-        $dboObj->update($obj, $tableName);
+        return $dboObj->update($obj, $tableName);
     }
     
     function deleteFromTable($tableName, $id) {
         $dboObj = new DBO;
-        $dboObj->delete($tableName, $id);
+        return $dboObj->delete($tableName, $id);
     }
     
     function selectManagerAndCompany() {
@@ -60,7 +60,12 @@ class managerClass {
 
     function insertToRoutes($obj) {
         $dboObj = new DBO;
-        $dboObj->insertToRoutes($obj);
+        return $dboObj->insertToRoutes($obj);
+    }
+    
+    function updateManagersDetails($arrayOfObjs) {
+        $dboObj = new DBO;
+        return $dboObj->updateManagersDetails($arrayOfObjs);
     }
 }
 ?>

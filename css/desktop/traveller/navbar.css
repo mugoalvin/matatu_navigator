@@ -9,6 +9,7 @@ body {
   display: flex;
   height: 100vh;
   overflow: hidden;
+  background-color: var(--overallBackground);
 }
 
 /* =======================Header======================= */
@@ -20,7 +21,6 @@ body header {
   width: 100%;
   height: 10vh;
   padding-inline: 1vw;
-  box-shadow: 0 0 10px 2px var(--black);
 }
 body header ion-icon{
   cursor: pointer;
@@ -28,7 +28,7 @@ body header ion-icon{
 }
 body header h3{
   font-family: "waterfall";
-  text-shadow: 0 0 5px var(--pinkish);
+  text-shadow: 0 0 5px var(--primaryColor);
   font-size: 40px;
 }
 body header > form {
@@ -67,7 +67,7 @@ body header > form .input {
   width: 40px;
   border-radius: 50%;
   padding-inline: 5px;
-  background-color: var(--pinkish);
+  background-color: var(--primaryColor);
 }
 body header > form .input ion-icon{
   height: 50%;
@@ -126,8 +126,6 @@ body header > div ion-icon {
 body #sideBar {
   overflow: hidden;
   width: 20%;
-  border-inline-end: solid 1px var(--black);
-  box-shadow: 0 10px 10px var(--black);
 }
 body #sideBar h3 {
   text-align: center;
@@ -142,7 +140,7 @@ body #sideBar #matatuOptions #matatuOption {
   border-radius: 15px;
 }
 body #sideBar #matatuOptions #matatuOption:hover {
-  background-color: var(--pinkish);
+  background-color: var(--primaryColor);
 }
 body #sideBar #matatuOptions #matatuOption img {
   max-width: 70px;
@@ -179,11 +177,20 @@ body #sideBar #matatuOptions #matatuOption #details #starsDiv #stars .starRating
   cursor: pointer;
 }
 
-.starRating:hover, .starRating.active {
+.starRating:hover, .starRating.active, .feedbackstarRating:hover, .feedbackstarRating.active {
   color: var(--orange);
 }
 
 body #sideBar, main {
   margin-block-start: 10vh;
-  padding: 1vw;
+  padding-inline: 1vw;
+}
+main {
+  width: 80%;
+  height: 89vh;
+  border-radius: 20px;
+  margin-inline: 10px;
+  /* margin-block-start: 8vh; */
+  border: solid 2px var(--darkText);
+  background-color: var(--white);
 }
