@@ -1,6 +1,6 @@
 <?php
-// error_reporting(E_ALL);
-// ini_set("display_errors", 1);
+error_reporting(E_ALL);
+ini_set("display_errors", 1);
 
 session_start();
 
@@ -16,5 +16,4 @@ if ($classObj->updateManagersDetails($managersUpdateInput)) {
     echo 'Done';
     header("Location: ../../php/manager/manager_details.php");
 }
-
 ?>

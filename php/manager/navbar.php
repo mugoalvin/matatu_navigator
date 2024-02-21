@@ -1,7 +1,14 @@
 <?php
 session_start();
 
+?>
+<script type="module">
+    import Swal from '../../node_modules/sweetalert2'
+</script>
+<?php
+
 $matatuDetails = (include("../../controller/manager/json.php"))[0];
+include('../../controller/manager/getRoutesData.php');
 
 if (!isset($_SESSION["loginInManager"])) {
     header("Location: ../login.php");
@@ -49,6 +56,21 @@ if ($_SESSION['isMatatuProfileUpdated']): ?>
     alert("No image was uploaded or there is an error with the image file")
 </script>
 <?php endif; $_SESSION['noImageUploaded'] = false?>
+
+<!-- If Route was Updated -->
+<?php if($_SESSION['isRouteUpdated']) : ?>
+<script>
+    alert("Route Data Was Successfully Updated")
+</script>
+<?php endif; $_SESSION['isRouteUpdated'] = false?>
+
+<!-- If Route Was Deleted -->
+<?php if($_SESSION['isRouteDeleted']) : ?>
+<script>
+    alert("Route Data Was Successfully Updated")
+</script>
+<?php endif; $_SESSION['isRouteDeleted'] = false?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -108,8 +130,12 @@ if ($_SESSION['isMatatuProfileUpdated']): ?>
                 <span>Home</span>
             </a>
             <a class="links" href="new_route.php">
-                <ion-icon name="add-circle"></ion-icon>
+                <ion-icon name="add"></ion-icon>
                 <span>Create New Route</span>
+            </a>
+            <a class="links" href="edit_route.php">
+                <ion-icon name="pencil"></ion-icon>
+                <span>Edit Route</span>
             </a>
             <a class="links" href="update_details.php">
                 <ion-icon name="trending-up"></ion-icon>
@@ -120,7 +146,7 @@ if ($_SESSION['isMatatuProfileUpdated']): ?>
                 <span>Delete Matatu Profile</span>
             </a>
             <a class="links" href="manager_details.php">
-                <ion-icon name="information-circle"></ion-icon>
+                <ion-icon name="information"></ion-icon>
                 <span>Managers Details</span>
             </a>
         </div>
@@ -134,7 +160,7 @@ if ($_SESSION['isMatatuProfileUpdated']): ?>
                 <span>Create Matatu Profile</span>
             </a>
             <a class="links" href="manager_details.php">
-                <ion-icon name="information-circle"></ion-icon>
+                <ion-icon name="information"></ion-icon>
                 <span>Managers Details</span>
             </a>
         </div>
