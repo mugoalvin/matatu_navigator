@@ -67,5 +67,21 @@ class managerClass {
         $dboObj = new DBO;
         return $dboObj->updateManagersDetails($arrayOfObjs);
     }
+
+    function readRouteData($id) {
+        $dboObj = new DBO;
+        return $dboObj->readRouteData($id);
+    }
+    
+    function updateRoute($obj) {
+        $dboObj = new DBO;
+        return $dboObj->updateRoute($obj);
+    }
+
+    function deleteRoute($id) {
+        $dboObj = new DBO;
+        return $dboObj->deleteRoute($id);
+    }
+
 }
 ?>

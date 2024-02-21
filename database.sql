@@ -27,27 +27,3 @@ DROP TABLE IF EXISTS rating;
 CREATE TABLE rating (
     id INT AUTO_INCREMENT PRIMARY KEY, route_id INT, rating INT, user_id INT, feedback VARCHAR(255)
 );
-
--- SELECT
---     matatuCompanies.id AS matatu_company_id,
---     matatuCompanies.name AS matatu_company_name,
---     matatuCompanies.latitude,
---     matatuCompanies.longitude,
---     matatuCompanies.city AS departure_city,
---     departure.name AS departure_name,
---     departure.latitude AS departure_latitude,
---     departure.longitude AS departure_longitude,
---     departure.imagePath AS departure_image,
---     routes.id AS route_id,
---     routes.price,
---     routes.eta,
---     destination.name AS destination_name,
---     destination.latitude AS destination_latitude,
---     destination.longitude AS destination_longitude,
---     destination.city AS destination_city
--- FROM matatuCompanies
--- JOIN routes ON matatuCompanies.id = routes.departure_id
--- JOIN matatuCompanies AS departure ON routes.departure_id = departure.id
--- JOIN matatuCompanies AS destination ON routes.destination_id = destination.id
--- WHERE departure.city = 'Nairobi' AND destination.city = 'Nakuru' OR 
---     departure.city = 'Nakuru' AND destination.city = 'Nairobi';

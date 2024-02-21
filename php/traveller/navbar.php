@@ -102,18 +102,14 @@ $_SESSION["allMatatus"] = include('../../controller/manager/getTableData.php');
     <h3>Available Matatus</h3>
     <hr>
     
-    <!-- Will remove the styling below -->
-    <div id='matatuOptions' style="font-size: 12px">
+    <div id='matatuOptions'>
         <script>
             var availableMatatusObj = <?php echo json_encode($_SESSION['availableMatatus']) ?>
         </script>
 
         <?php
         $integer = 0;
-        foreach ($_SESSION['availableMatatus'] as $availableMatatu): 
-        // print_r($availableMatatu);
-        // echo "../../images/$availableMatatu->departure_image";
-        ?>
+        foreach ($_SESSION['availableMatatus'] as $availableMatatu): ?>
             <div id='matatuOption'>
                 <img src='../../images/<?php echo ($availableMatatu->departure_image) ? $availableMatatu->departure_image :  $availableMatatu->destination_image?>' alt='Matatu Image Here'>
                 <div id='details'>

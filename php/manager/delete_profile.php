@@ -24,15 +24,10 @@ $_SESSION['isMatatuSelected'] = !$matatuDetails && $descTableResult ? false : tr
                 #data {
                     flex-direction: row;
                 }
-                /* #data label {
-                    width: 25%;
-                } */
             </style>
             <div id='data'>
-            <!-- <div> -->
                 <label id='label'><?php echo $value->Field?>:</label>
                 <span><?php echo $inputBoxValue?></span>
-                <!-- <input type="text" value="<?php echo $inputBoxValue?>"> -->
             </div>
         <?php } ?>
         <div id='buttonDiv'>
