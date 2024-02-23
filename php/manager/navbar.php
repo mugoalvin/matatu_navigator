@@ -1,12 +1,6 @@
 <?php
 session_start();
 
-?>
-<script type="module">
-    import Swal from '../../node_modules/sweetalert2'
-</script>
-<?php
-
 $matatuDetails = (include("../../controller/manager/json.php"))[0];
 include('../../controller/manager/getRoutesData.php');
 

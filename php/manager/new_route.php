@@ -17,7 +17,6 @@
     <script src="https://js.arcgis.com/4.28/"></script>
 </head>
 
-<!-- <h2>Manager Dashboard</h2> -->
 <?php
 include("navbar.php");
 $matatuCompanies = include('../../controller/manager/getAvailableMatatus.php');
