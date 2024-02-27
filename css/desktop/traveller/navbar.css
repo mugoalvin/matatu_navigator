@@ -129,6 +129,8 @@ body #sideBar {
 }
 body #sideBar h3 {
   text-align: center;
+  white-space: nowrap;
+  text-wrap: nowrap;
 }
 body #sideBar #matatuOptions {
   height: 100%;

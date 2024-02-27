@@ -21,6 +21,6 @@
             border-radius: 20px;
         }
     </style>
-    <a href="./php/registration.php">To Registration Page</a>
+    <a href="./php/login.php">To Login Page</a>
 </body>
 </html>

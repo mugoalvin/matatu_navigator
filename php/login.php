@@ -12,6 +12,15 @@
     <form action="../controller/login/login_proc.php" method="post">
         <h2>Login Page</h2>
         <div>
+            <label>Category:</label>
+            <select name="userCategory">
+                <option selected disabled>Select From The Options</option>
+                <option value="administrator">Administrator</option>
+                <option value="manager">Manager</option>
+                <option value="traveller">Traveller</option>
+            </select>
+        </div>
+        <div>
             <label>Username:</label>
             <input type="text" name="username" id="usernameInput">
             <p id="usernameError" class="errorMessages"></p>
@@ -21,10 +30,10 @@
             <input type="password" name="password" id="password">
             <ion-icon id="showPassIcon" name="eye-outline"></ion-icon>
         </div>
-        <input id="button" type="submit" value="Login" name="action"></input>
-
+        <div>
+            <input id="button" type="submit" value="Login" name="action"></input>
+        </div>
         <a href="registration.php">Dont Have An Account? Sign Up</a>
-
     </form>
 
     <script src="../javascript/register.js"></script>

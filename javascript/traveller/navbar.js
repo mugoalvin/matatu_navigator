@@ -17,11 +17,13 @@ document.querySelector('ion-icon[name=menu]').addEventListener('click', () => {
     const mainTag = document.getElementById('main')
     if (sideBar.style.width != '0%') {
         sideBar.style.width = '0%'
+        sideBar.style.paddingInline = '0';
         mainTag.style.width = '100%'
     }
     else {
         sideBar.style.width = '20%'
         mainTag.style.width = '80%'
+        sideBar.style.paddingInline = '1vw';
     }
 })
 
