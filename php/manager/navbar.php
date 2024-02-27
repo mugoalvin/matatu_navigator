@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 
 $matatuDetails = (include("../../controller/manager/json.php"))[0];

@@ -1,7 +1,7 @@
 <?php
 
-// error_reporting(E_ALL);
-// ini_set("display_errors", 1);
+error_reporting(E_ALL);
+ini_set("display_errors", 1);
 
 session_start();
 
@@ -10,14 +10,18 @@ include("../../model/login/class.php");
 
 if (isset($_POST)) {
     $usersInput = (object)$_POST;
-    // $usersInput->password = md5($usersInput->password);
+
+    foreach ($usersInput as $key => $value) {
+        echo $key . ' = ' . $value . '<br>';
+    }
+
     $obj = new loginClass;
     
     function getAllUsersAndManagers($object, $usersInput, $tableName) {
         return $object->getData($usersInput->username, $tableName);
     }
     
-    if (strpos($usersInput->username, "mng") !== false) {
+    if ($usersInput->userCategory == 'manager') {
         $dbCredentials = getAllUsersAndManagers($obj, $usersInput, 'managers');
         if (!$dbCredentials) {
             header("Location: ../../php/login.php");
@@ -35,10 +39,7 @@ if (isset($_POST)) {
             }
         }
     }
-    elseif (strpos($usersInput->username, "admin") !== false) {
-        header("Location: ../../php/admin/home.php");
-    }
-    else {
+    elseif ($usersInput->userCategory == 'traveller') {
         $dbCredentials = getAllUsersAndManagers($obj, $usersInput, 'travellers');
         foreach ($dbCredentials as $credential) {
             if ($usersInput->username == $credential->username) {
@@ -51,7 +52,12 @@ if (isset($_POST)) {
             }
         }
     }
-} else {
-    echo '5';
+    elseif ($usersInput->userCategory == 'administrator') {
+        if ($usersInput->username == 'admin' && $usersInput->password == 'a') {
+            header("Location: ../../php/admin/home.php");
+        }
+    }
+}
+if ($_POST['username'] == null && $_POST['password'] == null) {
     header("Location: ../../php/login.php");
 }

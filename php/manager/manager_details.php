@@ -14,13 +14,6 @@ $descTableResult = include('../../controller/manager/descManagerDetails.php');
 
 <main>
     <style>
-        #data {
-            display: block;
-        }
-        #data label {
-            margin-inline-end: 3%;
-            font-weight: 900;
-        }
         .form {
             overflow-y: scroll;
         }

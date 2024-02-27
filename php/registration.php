@@ -45,7 +45,9 @@
             <input type="number" name="age">
             <p id="ageError" class="errorMessages"></p>
         </div>
-        <input id="button" type="submit" value="Register" name="action"></input>
+        <div>
+            <input id="button" type="submit" value="Register" name="action"></input>
+        </div>
 
         <a href="login.php">Already Have an Account? Login</a>
     </form>
