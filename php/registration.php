@@ -56,7 +56,7 @@
             <p id="ageError" class="errorMessages"></p>
         </div>
         <div>
-            <input id="button" type="submit" value="Register" name="action"></input>
+            <input id="button" type="submit" value="Register" name="action" disabled>
         </div>
 
         <a href="login.php">Already Have an Account? Login</a>

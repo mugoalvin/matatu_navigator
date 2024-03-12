@@ -30,21 +30,21 @@ var isEmailValid = false;
 // var isPasswordValid = false;
 // var isAgeValid = false;
 
-function nameValidation(fnameInput) {
+function nameValidation(nameInput) {
   let errorMessage = "";
-  if (!/^[a-zA-Z]+$/.test(fnameInput)) {
-    errorMessage = "First name must contain only letters.\n";
+  if (!/^[a-zA-Z]+$/.test(nameInput)) {
+    errorMessage = "Name must contain only letters.\n";
   }
-  if (fnameInput.length <= 2) {
-    errorMessage = "First name should be between more than 2 characters";
+  if (nameInput.length <= 2) {
+    errorMessage = "Name should be between more than 2 characters";
   }
-  if (fnameInput.length > 10) {
-    errorMessage = "First name should not exceed 10 characters.";
+  if (nameInput.length > 10) {
+    errorMessage = "Name should not exceed 10 characters.";
   }
-  if (parseInt(fnameInput)) {
-    errorMessage = "First name cannot be an integer.";
+  if (parseInt(nameInput)) {
+    errorMessage = "Name cannot be an integer.";
   }
-  if (fnameInput == "" || fnameInput.length == 0) {
+  if (nameInput == "" || nameInput.length == 0) {
     errorMessage = "";
   }
   return errorMessage;
@@ -71,9 +71,8 @@ function usernameValidation(username) {
     errorMessage = "";
   }
   usernameErrorDiv.innerText = errorMessage;
-  isUsernameValid = (errorMessage == "" || errorMessage == null) ? true : false;
-  disableRegisterButton()
-  console.log("isUsernameValid: " + isUsernameValid);
+  isUsernameValid = username !== "" && errorMessage == ""  ? true : false;
+  disableRegisterButton();
 }
 
 function emailValidation(email) {
@@ -84,9 +83,8 @@ function emailValidation(email) {
     }
   });
   emailErrorDiv.innerText = errorMessage;
-  isEmailValid = errorMessage == "" ? true : false;
-  disableRegisterButton()
-  console.log("isEmailValid: " + isEmailValid);
+  isEmailValid = errorMessage == "" && email !== "" ? true : false;
+  disableRegisterButton();
 }
 
 showPasswordIcon.addEventListener("click", () => {
@@ -100,36 +98,36 @@ showPasswordIcon.addEventListener("click", () => {
 });
 
 errors.forEach((error) => {
-  error.style.height = 0;
+  error.style.height = error == "" ? 0 : "auto";
 });
 
 fnameInput.addEventListener("input", () => {
   errorMessage = nameValidation(fnameInput.value);
+  isFirstNameValid = errorMessage == "" && fnameInput.value !== "" ? true : false;
   fnameErrorDiv.innerText = errorMessage;
-  isFirstNameValid = errorMessage == "" ? true : false;
-  disableRegisterButton()
-  console.log("isFirstNameValid: " + isFirstNameValid);
+  disableRegisterButton();
 });
 
 lnameInput.addEventListener("input", () => {
-    errorMessage = nameValidation(lnameInput.value);
-    lnameErrorDiv.innerText = errorMessage;
-    isLastNameValid = errorMessage == "" ? true : false;
-    disableRegisterButton()
-    console.log("isLastNameValid: " + isLastNameValid);
+	errorMessage = nameValidation(lnameInput.value);
+	isLastNameValid = lnameInput.value !== "" && errorMessage == "" ? true : false
+	lnameErrorDiv.innerText = errorMessage;
+	disableRegisterButton();
 });
 
 usernameInput.addEventListener("input", () => {
+  isUsernameValid = (usernameInput.value == "" || usernameInput.value == null) ? false : true
   usernameValidation(usernameInput.value);
 });
 
 emailInput.addEventListener("input", () => {
+  if (emailInput.value == "" || emailInput.value == null) {
+    isEmailValid = false;
+  }
   emailValidation(emailInput.value);
 });
 
-
 // Disabling the register button
 function disableRegisterButton() {
-    registerButton.disabled = isFirstNameValid && isLastNameValid && isEmailValid && isUsernameValid ? false : true;
-    console.log("isButtonDisabled: " + registerButton.disabled );
+  registerButton.disabled = isFirstNameValid && isLastNameValid && isEmailValid && isUsernameValid ? false : true;
 }
