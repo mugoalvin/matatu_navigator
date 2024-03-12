@@ -1,10 +1,10 @@
 <?php
-echo "<br>DBO<br>";
+@include("../../DB.php");
+$error = error_get_last();
 
-// error_reporting(E_ALL);
-// ini_set("display_errors" , 1);
-
-include("../../DB.php");
+if ($error !== null) {
+    include("../DB.php");
+}
 
 class registerDBO {
     public $conn;
@@ -13,6 +13,18 @@ class registerDBO {
     function __construct() {
         $db = new DatabaseConnection;
         $this->conn = $db->getConnection();
+    }
+
+    function getAllUsers() {
+        $sqlCommand = "SELECT username, email FROM travellers";
+        $this->stmt = $this->conn->prepare($sqlCommand);
+        try {
+            $this->stmt->execute();
+            return $this->stmt->fetchAll(PDO::FETCH_OBJ);
+        }
+        catch (PDOException $e) {
+            echo "<br>Failed: ". $e->getMessage() ."<br>";
+        }
     }
 
     function insert($obj) {

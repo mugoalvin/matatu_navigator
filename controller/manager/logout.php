@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-print_r( $_SESSION["loginInManager"] );
+print_r( $_SESSION["loggedInManager"] );
 
 session_destroy();
 

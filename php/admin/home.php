@@ -19,7 +19,7 @@ include("navbar.php");
             }
             ?>
         </select>
-        <button>Click Me</button>
+        <button>Display</button>
     </form>
 
     <table class="table table-striped table-hover">
