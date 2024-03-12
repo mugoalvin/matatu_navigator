@@ -34,8 +34,12 @@ body {
                 <input type="text" name="last_name">
             </div>
             <div>
-                <label>username:</label>
+                <label>Username:</label>
                 <input type="text" name="username">
+            </div>
+            <div>
+                <label>Password:</label>
+                <input type="text" name="password">
             </div>
             <div>
                 <input type="submit" value="Submit" class="formBtn" id="submitBtn">
