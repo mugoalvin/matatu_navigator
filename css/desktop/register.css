@@ -74,6 +74,9 @@ body form #button:hover{
     /* box-shadow: 0 0 5px 2px var(--lines); */
     letter-spacing: 3px;
 }
+body form #button[disabled]{
+    background: var(--purple2);
+}
 body form a {
     float: right;
     text-decoration: none;

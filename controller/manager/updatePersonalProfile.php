@@ -9,7 +9,7 @@ $managersUpdateInput = (object)$_POST;
 $managersUpdateInput->id = $_SESSION['managersId'];
 $managersUpdateInput->password = md5($managersUpdateInput->password);
 if ($managersUpdateInput->password == 'd41d8cd98f00b204e9800998ecf8427e') {
-    $managersUpdateInput->password = $_SESSION["loginInManager"]->password;
+    $managersUpdateInput->password = $_SESSION["loggedInManager"]->password;
 }
 $classObj = new managerClass;
 

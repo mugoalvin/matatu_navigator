@@ -7,7 +7,7 @@ $_SESSION['newCompanyID'] = $company_id + 1;
 // If Manager was added successfully
 if ($_SESSION['isManagerAdded']): ?>
 <script>
-    alert("Manager sussessfully Added")
+    alert("Manager successfully Added")
 </script>
 <?php endif; $_SESSION['isManagerAdded'] = false ?>
 
@@ -15,6 +15,12 @@ if ($_SESSION['isManagerAdded']): ?>
     <link rel="stylesheet" href="../../css/color.css">
     <link rel="stylesheet" href="../../css/desktop/manager/create_profile.css">
 </head>
+<style>
+body {
+    background-color: var(--overallBackground);
+}
+
+</style>
 <main>
     <div id="formDiv">
         <form class="form" action="../../controller/admin/addManager.php" method="post">

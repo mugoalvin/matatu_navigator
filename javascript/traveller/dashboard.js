@@ -66,7 +66,6 @@ getCurrentLocation().then(function (currentLocation) {
                 const centerLongitude = destinationObj.longitude;
                 const radiusInKm = 1;
                 
-                
                 if (isWithinRadius(yourLatitude, yourLongitude, centerLatitude, centerLongitude, radiusInKm)) {
                     var ifRate = confirm("You are about or have arrived. Would like to send rate your experience?")
                     if (ifRate) {
@@ -76,9 +75,6 @@ getCurrentLocation().then(function (currentLocation) {
                         console.log("Rating cancelled");
                     }
                 }
-                // else {
-                //     console.log("You are outside the 1km radius.");
-                // }
             })
         })
     })

@@ -23,11 +23,6 @@ include("navbar.php");
             Matatu Profile" in the sidebar section. Make sure to fill in all the inputs.</p>
     <?php else: ?>
         <div id="map"></div>
-        <!-- <button id="getDirectionBtn">Get Directions</button> -->
-        <?php
-        // echo '<br>';
-        // print_r($_SESSION["loginInManager"]);
-        ?>
     <?php endif; ?>
 </main>
 <script src="../../javascript/manager/home.js"></script>

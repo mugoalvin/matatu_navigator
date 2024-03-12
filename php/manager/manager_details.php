@@ -23,7 +23,7 @@ $descTableResult = include('../../controller/manager/descManagerDetails.php');
         <?php
         foreach ($descTableResult as $result) :
             if ($result->Field == 'id') {
-                $_SESSION['managersId'] = $_SESSION["loginInManager"]->{$result->Field};
+                $_SESSION['managersId'] = $_SESSION["loggedInManager"]->{$result->Field};
                 continue;
             }
 
@@ -38,7 +38,7 @@ $descTableResult = include('../../controller/manager/descManagerDetails.php');
             }
 
             else {
-                $inputBoxValue = $_SESSION["loginInManager"]->{$result->Field};
+                $inputBoxValue = $_SESSION["loggedInManager"]->{$result->Field};
             }
             ?>
             <div>

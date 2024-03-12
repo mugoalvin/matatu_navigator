@@ -5,19 +5,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../css/color.css">
-
     <link rel="stylesheet" href="../../css/desktop/manager/navbar.css">
 
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Italianno&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Italianno&family=Neonderthaw&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Waterfall&display=swap" rel="stylesheet">
 
-
+    <!-- BootStrap Links -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
+    <!-- Ion-icon Links -->
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 
@@ -37,7 +38,7 @@
             <ion-icon id="darkModeToggle" name="moon"></ion-icon>
             <div id="userAndDropDown" style='position: relative'>
                 <div id='user'>
-                    <?php echo $_SESSION["loginInManager"]->first_name . ' ' . $_SESSION["loginInManager"]->last_name ?>
+                    <?php echo $_SESSION["loggedInManager"]->first_name . ' ' . $_SESSION["loggedInManager"]->last_name ?>
                     <ion-icon name="person-outline"></ion-icon>
                     <ion-icon name="chevron-down-outline" id="chevron-down-outline"></ion-icon>
                 </div>

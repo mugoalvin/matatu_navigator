@@ -5,7 +5,7 @@ session_start();
 $matatuDetails = (include("../../controller/manager/json.php"))[0];
 include('../../controller/manager/getRoutesData.php');
 
-if (!isset($_SESSION["loginInManager"])) {
+if (!isset($_SESSION["loggedInManager"])) {
     header("Location: ../login.php");
 }
 
@@ -91,7 +91,7 @@ if ($_SESSION['isMatatuProfileUpdated']): ?>
 
         <div id="selectedMatatu">
             <?php
-            echo ($_SESSION['isMatatuSelected']) ? $matatuDetails->name . ' - ' . $matatuDetails->city : 'Not Logged In';
+            echo ($_SESSION['isMatatuSelected']) ? $matatuDetails->name . ' - ' . $matatuDetails->city : 'No Matatu Logged In';
             ?>
         </div>
 
@@ -100,7 +100,7 @@ if ($_SESSION['isMatatuProfileUpdated']): ?>
             <ion-icon id="darkModeToggle" name="moon"></ion-icon>
             <div id="userAndDropDown" style='position: relative'>
                 <div id='user'>
-                    <?php echo $_SESSION["loginInManager"]->first_name . ' ' . $_SESSION["loginInManager"]->last_name ?>
+                    <?php echo $_SESSION["loggedInManager"]->first_name . ' ' . $_SESSION["loggedInManager"]->last_name ?>
                     <ion-icon name="person-outline"></ion-icon>
                     <ion-icon name="chevron-down-outline" id="chevron-down-outline"></ion-icon>
                 </div>
@@ -188,33 +188,6 @@ if ($_SESSION['isMatatuProfileUpdated']): ?>
                 mainTag.style.width = '80%'
             }
         })
-
-
-        // var feedbackSection = document.getElementById('feedbackSection')
-        // clearFeedbackSection()
-        // feedbackSection.innerHTML = generateFeedbackCards(feedbacks);
-
-
-
-        // document.addEventListener('DOMContentLoaded', function () {
-        //     integer = 0
-        //     var individualFeedback = document.querySelectorAll('.individualFeedback')
-
-        //     individualFeedback.forEach(individualFeed => {
-        //         var stars = document.querySelectorAll('.stars' + integer + ' .feedbackstarRating');
-
-        //         stars.forEach(function (star, index) {
-        //             console.log(feedbacks[integer].rating);
-        //             if (index < feedbacks[integer].rating) {
-        //                 star.classList.add("active");
-        //             } else {
-        //                 star.classList.remove("active");
-        //             }
-        //         });
-
-        //         integer += 1
-        //     })
-        // });
     </script>
 
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>

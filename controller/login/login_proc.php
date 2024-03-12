@@ -30,7 +30,7 @@ if (isset($_POST)) {
             foreach ($dbCredentials as $credential) {
                 if ($usersInput->username == $credential->username) {
                     if (md5($usersInput->password) == $credential->password || md5($usersInput->password) == md5($credential->password)) {
-                        $_SESSION["loginInManager"] = $credential;
+                        $_SESSION["loggedInManager"] = $credential;
                         header("Location: ../../php/manager/home.php");
                     } else {
                         header("Location: ../../php/login.php");

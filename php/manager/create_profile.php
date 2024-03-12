@@ -14,9 +14,17 @@ include("navbar.php");
     <div id="formDiv">
         <form class="form" action="../../controller/manager/newProfile_proc.php" method="post">
             <h2>Create Matatu Profile</h2>
-            <div>
-                <label>Matatu Company id</label>
-                <input type="number" name="company_id" readonly value=<?php echo $_SESSION["loginInManager"]->id ?>>
+            <div >
+                <label 
+                    style="
+                        display: none;
+                    ">Matatu Company id</label>
+                <input type="number" name="company_id" readonly value=<?php echo $_SESSION["loggedInManager"]->id ?>
+                    style="
+                        color: transparent;
+                        border: 0;
+                        height: 0;
+                    ">
             </div>
             <div>
                 <label>Matatu Company Name</label>
@@ -34,7 +42,9 @@ include("navbar.php");
                 <label>City</label>
                 <input type="text" name="city">
             </div>
-            <input type="submit" value="Create Profile" class="formBtn" id="createBtn">
+            <div>
+                <input type="submit" value="Create Profile" class="formBtn" id="createBtn">
+            </div>
         </form>
         <div id="mapDiv">
             <section id="map"></section>

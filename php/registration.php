@@ -9,6 +9,16 @@
     <title>Registration</title>
 </head>
 <body>
+    <?php
+    include("../controller/register/getAllUsers.php");
+    // foreach ($allRegisteredUsers as $user) {
+    //     print_r( $user );
+    //     echo "<br>";
+    // }
+    ?>
+    <script>
+        var allUsers = <?php echo json_encode($allRegisteredUsers); ?>
+    </script>
     <form action="../controller/register/register_proc.php" method="post">
         <h2>Registration Page</h2>
         <div>
