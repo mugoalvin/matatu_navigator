@@ -65,12 +65,13 @@ class adminDBO{
     }
 
     function insertToManagers($obj) {
-        $command = "INSERT INTO managers(company_id, first_name, last_name, username) VALUES(:company_id, :first_name, :last_name, :username)";
+        $command = "INSERT INTO managers(company_id, first_name, last_name, username, password) VALUES(:company_id, :first_name, :last_name, :username, :password)";
         $stmt = $this->conn->prepare($command);
         $stmt->bindParam(":company_id", $obj->company_id);
         $stmt->bindParam(":first_name", $obj->first_name);
         $stmt->bindParam(":last_name", $obj->last_name);
         $stmt->bindParam(":username", $obj->username);
+        $stmt->bindParam(":password", $obj->password);
         try {
             $stmt->execute();
             return true;

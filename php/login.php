@@ -13,7 +13,7 @@
         <h2>Login Page</h2>
         <div>
             <label>Category:</label>
-            <select name="userCategory">
+            <select name="userCategory" id="userCategory">
                 <option selected disabled>Select From The Options</option>
                 <option value="administrator">Administrator</option>
                 <option value="manager">Manager</option>
@@ -31,12 +31,13 @@
             <ion-icon id="showPassIcon" name="eye-outline"></ion-icon>
         </div>
         <div>
-            <input id="button" type="submit" value="Login" name="action"></input>
+            <input id="button" type="submit" value="Login" name="action" disabled>
         </div>
         <a href="registration.php">Dont Have An Account? Sign Up</a>
     </form>
 
     <script src="../javascript/register.js"></script>
+    <script src="../javascript/login.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>
