@@ -3,6 +3,7 @@ session_start();
 if (!$_SESSION["loginInUser"]) {
     header("Location: login.php");
 }
+include('navbar.php');
 ?>
 
 <head>
@@ -11,14 +12,7 @@ if (!$_SESSION["loginInUser"]) {
     <title>Traveller Home</title>
 
     <link rel="stylesheet" href="../../css/desktop/traveller/dashboard.css">
-
-    <link rel="stylesheet" href="https://js.arcgis.com/4.28/esri/themes/light/main.css" />
-    <script src="https://js.arcgis.com/4.28/"></script>
 </head>
-
-<?php
-include('navbar.php');
-?>
 <main id="main">
     <div id="map"></div>
     <section id="feedbackSection">

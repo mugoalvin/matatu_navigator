@@ -2,10 +2,10 @@
 
 session_start();
 
-$matatuDetails = (include("../../controller/manager/json.php"))[0];
-include('../../controller/manager/getRoutesData.php');
+$matatuDetails = (include ("../../controller/manager/json.php"))[0];
+include ('../../controller/manager/getRoutesData.php');
 
-if (!isset($_SESSION["loggedInManager"])) {
+if (!isset ($_SESSION["loggedInManager"])) {
     header("Location: ../login.php");
 }
 
@@ -29,42 +29,48 @@ if ($_SESSION['isMatatuProfileUpdated']): ?>
     <script>
         alert("Matatu Profile Updated Successfully")
     </script>
-<?php endif; $_SESSION['isMatatuProfileUpdated'] = false;?>
+<?php endif;
+$_SESSION['isMatatuProfileUpdated'] = false; ?>
 
 <!-- If managers profile is updated -->
-<?php if($_SESSION['isManagersProfileUpdated']) : ?>
+<?php if ($_SESSION['isManagersProfileUpdated']): ?>
     <script>
         alert("Managers Details Was Successfully Updated")
     </script>
-<?php endif; $_SESSION['isManagersProfileUpdated'] = false ?>
+<?php endif;
+$_SESSION['isManagersProfileUpdated'] = false ?>
 
 <!-- If new route was added -->
-<?php if($_SESSION['isRouteAdded']) : ?>
+<?php if ($_SESSION['isRouteAdded']): ?>
     <script>
         alert("New Route Was Successfully Added")
     </script>
-<?php endif; $_SESSION['isRouteAdded'] = false ?>
+<?php endif;
+$_SESSION['isRouteAdded'] = false ?>
 
 <!-- If image wasn't uploaded -->
-<?php if($_SESSION['noImageUploaded']) : ?>
-<script>
-    alert("No image was uploaded or there is an error with the image file")
-</script>
-<?php endif; $_SESSION['noImageUploaded'] = false?>
+<?php if ($_SESSION['noImageUploaded']): ?>
+    <script>
+        alert("No image was uploaded or there is an error with the image file")
+    </script>
+<?php endif;
+$_SESSION['noImageUploaded'] = false ?>
 
 <!-- If Route was Updated -->
-<?php if($_SESSION['isRouteUpdated']) : ?>
-<script>
-    alert("Route Data Was Successfully Updated")
-</script>
-<?php endif; $_SESSION['isRouteUpdated'] = false?>
+<?php if ($_SESSION['isRouteUpdated']): ?>
+    <script>
+        alert("Route Data Was Successfully Updated")
+    </script>
+<?php endif;
+$_SESSION['isRouteUpdated'] = false ?>
 
 <!-- If Route Was Deleted -->
-<?php if($_SESSION['isRouteDeleted']) : ?>
-<script>
-    alert("Route Data Was Successfully Updated")
-</script>
-<?php endif; $_SESSION['isRouteDeleted'] = false?>
+<?php if ($_SESSION['isRouteDeleted']): ?>
+    <script>
+        alert("Route Data Was Successfully Updated")
+    </script>
+<?php endif;
+$_SESSION['isRouteDeleted'] = false ?>
 
 
 <!DOCTYPE html>
@@ -81,6 +87,10 @@ if ($_SESSION['isMatatuProfileUpdated']): ?>
     <link href="https://fonts.googleapis.com/css2?family=Italianno&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Italianno&family=Neonderthaw&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Waterfall&display=swap" rel="stylesheet">
+
+    <!-- Reference API Key -->
+    <link rel="stylesheet" href="https://js.arcgis.com/4.28/esri/themes/light/main.css" />
+    <script src="https://js.arcgis.com/4.28/"></script>
 </head>
 
 <body>

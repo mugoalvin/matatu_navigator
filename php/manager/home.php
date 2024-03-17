@@ -7,11 +7,6 @@ include("navbar.php");
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home Page</title>
     <link rel="stylesheet" href="../../css/desktop/manager/home.css">
-
-    <!-- Reference API Key -->
-    <link rel="stylesheet" href="https://js.arcgis.com/4.28/esri/themes/light/main.css" />
-    <script src="https://js.arcgis.com/4.28/"></script>
-
 </head>
 <script>
     let selectedMatatu = <?php echo json_encode($matatuDetails); ?>;

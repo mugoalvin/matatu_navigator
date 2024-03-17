@@ -25,18 +25,19 @@ if (isset($imageData) && $imageData->error === 0) {
     $targetDir = '../../images/';
     $targetFile = $targetDir . $imageName;
     $updatedDataObj->image = $imageName;
+    $updateMatatuImage = true;
 
     if (!move_uploaded_file($tempName, $targetFile)) {
         die('Failed to upload image.');
     }
 }
 else {
-    $_SESSION['noImageUploaded'] = true;
-    header('Location: ../../php/manager/update_details.php');
+    echo "ELSE<br><br>";
+    $updateMatatuImage = false;
 }
 
 $classObj = new managerClass;
-if ($classObj->updateProfile($updatedDataObj, 'matatuCompanies')) {
+if ($classObj->updateProfile($updatedDataObj, 'matatuCompanies', $updateMatatuImage)) {
     $_SESSION['isMatatuProfileUpdated'] = true;
     header('Location: ../../php/manager/update_details.php');
 }

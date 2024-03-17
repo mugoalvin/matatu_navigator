@@ -156,15 +156,15 @@ body #sideBar #matatuOptions #matatuOption #details {
   width: 100%;
 }
 body #sideBar #matatuOptions #matatuOption #details #departure_name{
-  font-family: 'Times New Roman', Times, serif;
+  /* font-family: 'Times New Roman', Times, serif; */
 }
 body #sideBar #matatuOptions #matatuOption #details #price{
-  font-family: 'Times New Roman', Times, serif;
+  /* font-family: 'Times New Roman', Times, serif; */
 }
 body #sideBar #matatuOptions #matatuOption #details #starsDiv{
   display: flex;
   justify-content: space-between;
-  font-family: 'Times New Roman', Times, serif;
+  /* font-family: 'Times New Roman', Times, serif; */
 }
 body #sideBar #matatuOptions #matatuOption #details #starsDiv p{
   margin-inline-end: 5px;

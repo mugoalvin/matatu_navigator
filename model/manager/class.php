@@ -36,9 +36,9 @@ class managerClass {
         return $dboObj->descTable($tableName);
     }
 
-    function updateProfile($obj, $tableName) {
+    function updateProfile($obj, $tableName, $updateImage) {
         $dboObj = new DBO;
-        return $dboObj->update($obj, $tableName);
+        return $dboObj->update($obj, $tableName, $updateImage);
     }
     
     function deleteFromTable($tableName, $id) {

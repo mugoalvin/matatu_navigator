@@ -36,7 +36,7 @@ function nameValidation(nameInput) {
     errorMessage = "Name must contain only letters.\n";
   }
   if (nameInput.length <= 2) {
-    errorMessage = "Name should be between more than 2 characters";
+    errorMessage = "Name should be more than 2 characters";
   }
   if (nameInput.length > 10) {
     errorMessage = "Name should not exceed 10 characters.";
