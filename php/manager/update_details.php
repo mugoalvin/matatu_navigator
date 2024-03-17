@@ -12,10 +12,6 @@ $descTableResult = include('../../controller/manager/descMatatuCompanies.php');
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-
-    <link rel="stylesheet" href="https://js.arcgis.com/4.28/esri/themes/light/main.css" />
-    <script src="https://js.arcgis.com/4.28/"></script>
-
 </head>
 
 <script>
@@ -52,7 +48,7 @@ $descTableResult = include('../../controller/manager/descMatatuCompanies.php');
             <?php endforeach ?>
             <div>
                 <label>Image</label>
-                <input type="file" name="matatuImage">
+                <input type="file" name="matatuImage" id="matatuImage">
             </div>
             <div>
                 <input type="submit" value="Submit" class="formBtn" id="submitBtn">

@@ -1,7 +1,8 @@
 <?php
 session_start();
-include('../../model/manager/class.php');
+include ('../../model/manager/class.php');
 $feedback = $_SESSION['feedbacks'];
+$_SESSION["allMatatus"] = include ('../../controller/manager/getTableData.php');
 
 
 if (!$_SESSION["loginInUser"]) {
@@ -15,16 +16,11 @@ if ($_SESSION['isRatingSaved']) { ?>
 <?php }
 $_SESSION['isRatingSaved'] = false;
 // ================================================================
-
-$_SESSION["allMatatus"] = include('../../controller/manager/getTableData.php');
 ?>
 <html lang="en">
 
 <script>
     var feedbacks = <?php echo json_encode($feedback) ?>;
-</script>
-
-<script>
     var allMatatus = <?php echo json_encode($_SESSION["allMatatus"]) ?>;
     var departureCity = <?php echo json_encode($_SESSION['departureCity']) ?>;
     var destinationCity = <?php echo json_encode($_SESSION['destinationCity']) ?>;
@@ -40,9 +36,10 @@ $_SESSION["allMatatus"] = include('../../controller/manager/getTableData.php');
     <link href="https://fonts.googleapis.com/css2?family=Italianno&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Italianno&family=Neonderthaw&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Waterfall&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://js.arcgis.com/4.28/esri/themes/light/main.css" />
+    <script src="https://js.arcgis.com/4.28/"></script>
 </head>
-
-
 
 <header id="navbarHeader">
     <div>
@@ -101,7 +98,7 @@ $_SESSION["allMatatus"] = include('../../controller/manager/getTableData.php');
 <section id="sideBar">
     <h3>Available Matatus</h3>
     <hr>
-    
+
     <div id='matatuOptions'>
         <script>
             var availableMatatusObj = <?php echo json_encode($_SESSION['availableMatatus']) ?>
@@ -111,7 +108,8 @@ $_SESSION["allMatatus"] = include('../../controller/manager/getTableData.php');
         $integer = 0;
         foreach ($_SESSION['availableMatatus'] as $availableMatatu): ?>
             <div id='matatuOption'>
-                <img src='../../images/<?php echo ($availableMatatu->departure_image) ? $availableMatatu->departure_image :  $availableMatatu->destination_image?>' alt='Matatu Image Here'>
+                <img src='../../images/<?php echo ($availableMatatu->departure_image) ? $availableMatatu->departure_image : $availableMatatu->destination_image ?>'
+                    alt='Matatu Image Here'>
                 <div id='details'>
                     <snap id='departure_name' class='departure_name'>
                         <?php echo $availableMatatu->departure_name ?>
@@ -134,14 +132,9 @@ $_SESSION["allMatatus"] = include('../../controller/manager/getTableData.php');
                     </div>
                 </div>
             </div>
-
-            <?php $integer += 1; endforeach; ?>
-
+        <?php $integer += 1; endforeach; ?>
     </div>
 </section>
-<script>
-
-</script>
 <script src="../../javascript/traveller/home.js"></script>
 <script src="../../javascript/traveller/navbar.js"></script>
 

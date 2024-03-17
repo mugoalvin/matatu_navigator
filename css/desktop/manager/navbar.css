@@ -34,7 +34,7 @@ body header h3 {
   font-size: 40px;
 }
 body header #selectedMatatu {
-  font-family: "Times New Roman", Times, serif;
+  /* font-family: "Times New Roman", Times, serif; */
   /* font-family: 'Neonderthaw'; */
   font-size: 5vh;
 }

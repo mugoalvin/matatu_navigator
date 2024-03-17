@@ -39,9 +39,10 @@ include('navbar.php');
                 if ($key == 'id' || $key == 'price') {
                     $dataType = 'number';
                 }
-                // if ($key == 'id') {
-                //     continue;
-                // }
+                if ($key == 'id') {
+                    $_SESSION["routeId"] = $value;
+                    continue;
+                }
                 ?>
                 <form class="form" action="../../controller/manager/editRoutes.php" method="post">
                     <div>

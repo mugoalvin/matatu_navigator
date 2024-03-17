@@ -2,7 +2,7 @@
 // error_reporting(E_ALL);
 // ini_set("display_errors" , 1);
 
-include('../../DB.php');
+include ('../../DB.php');
 
 class DBO
 {
@@ -25,7 +25,7 @@ class DBO
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_OBJ);
         } catch (Throwable $th) {
-            die("Error: Could not retrieve table description.");
+            die ("Error: Could not retrieve table description.");
         }
     }
 
@@ -55,7 +55,7 @@ class DBO
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_OBJ);
         } catch (Throwable $th) {
-            die("Error in retrieving details: " . $th->getMessage());
+            die ("Error in retrieving details: " . $th->getMessage());
         }
     }
 
@@ -68,7 +68,7 @@ class DBO
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_OBJ);
         } catch (Throwable $th) {
-            die("Error in retrieving details: " . $th->getMessage());
+            die ("Error in retrieving details: " . $th->getMessage());
         }
     }
     function select($tableName, $id)
@@ -79,7 +79,7 @@ class DBO
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_OBJ);
         } catch (Throwable $th) {
-            die("Error in retrieving details: " . $th->getMessage());
+            die ("Error in retrieving details: " . $th->getMessage());
         }
     }
 
@@ -91,20 +91,29 @@ class DBO
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_OBJ);
         } catch (Throwable $th) {
-            die("Error in retrieving details: " . $th->getMessage());
+            die ("Error in retrieving details: " . $th->getMessage());
         }
     }
 
-    function update($obj, $tableName)
+    function update($obj, $tableName, $updateImage)
     {
-        $updateCommand = "UPDATE $tableName
-        SET 
+
+        if ($updateImage) {
+            $updateCommand = "UPDATE $tableName SET 
             name = '$obj->name',
             latitude = $obj->latitude,
             longitude = $obj->longitude,
             city = '$obj->city',
             imagePath = '$obj->image'
         WHERE id = $obj->id";
+        } else {
+            $updateCommand = "UPDATE $tableName SET 
+            name = '$obj->name',
+            latitude = $obj->latitude,
+            longitude = $obj->longitude,
+            city = '$obj->city'
+        WHERE id = $obj->id";
+        }
 
         $stmt = $this->conn->prepare($updateCommand);
         try {
@@ -182,7 +191,7 @@ class DBO
         $bindings = [];
         $isFirst = true; // Flag for initial comma handling
         foreach (['first_name', 'last_name', 'username', 'password'] as $field) {
-            if (!empty($obj->$field)) { // Check if property has a value
+            if (!empty ($obj->$field)) { // Check if property has a value
                 if (!$isFirst) {
                     $updateCommand .= ', '; // Add comma for subsequent fields
                 }
@@ -210,7 +219,8 @@ class DBO
         }
     }
 
-    function readRouteData($id) {
+    function readRouteData($id)
+    {
         $readCommand = "SELECT routes.id, price, eta, city FROM routes JOIN matatuCompanies ON routes.destination_id = matatuCompanies.id WHERE routes.departure_id = :id OR routes.destination_id = :id";
         // $readCommand = "SELECT routes.id, price, eta, mc_departure.city AS departureCity, mc_destination.city AS destinationCity FROM routes JOIN matatuCompanies AS mc_departure ON routes.departure_id = mc_departure.id JOIN matatuCompanies AS mc_destination ON routes.destination_id = mc_destination.id WHERE routes.departure_id = :id OR routes.destination_id = :id";
         // $readCommand = "SELECT * FROM routes JOIN matatuCompanies ON routes.destination_id = matatuCompanies.id WHERE routes.id = :id";
@@ -239,7 +249,8 @@ class DBO
         }
     }
 
-    function deleteRoute($id) {
+    function deleteRoute($id)
+    {
         $updateCommand = "DELETE FROM routes WHERE id = :id";
         $this->stmt = $this->conn->prepare($updateCommand);
         $this->stmt->bindParam(':id', $id);

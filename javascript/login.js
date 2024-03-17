@@ -10,7 +10,7 @@ selectCategory.addEventListener("change", () => {
     disableLoginButton()
 })
 
-usernameInput.addEventListener("input", () =>{
+usernameInput.addEventListener("input", () => {
     isUsernameSelected = usernameInput.value !== "" ? true : false
     disableLoginButton()
 })

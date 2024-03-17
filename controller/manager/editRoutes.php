@@ -3,9 +3,10 @@ session_start();
 include('../../model/manager/class.php');
 
 $classObj = new managerClass;
+
+$_POST['id'] = $_SESSION["routeId"];
 print_r((object) $_POST);
 if ($_POST['updateRoute']) {
-    echo 'Update';
     if ($classObj->updateRoute((object) $_POST)) {
         $_SESSION['isRouteUpdated'] = true;
         header("Location: ../../php/manager/edit_route.php");

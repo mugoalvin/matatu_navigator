@@ -1,5 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php
+include ("navbar.php");
+$matatuCompanies = include ('../../controller/manager/getAvailableMatatus.php');
+$_SESSION['matatuCompanies'] = $matatuCompanies;
+?>
 
 <head>
     <meta charset="UTF-8">
@@ -12,16 +15,8 @@
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-
-    <link rel="stylesheet" href="https://js.arcgis.com/4.28/esri/themes/light/main.css" />
-    <script src="https://js.arcgis.com/4.28/"></script>
 </head>
 
-<?php
-include("navbar.php");
-$matatuCompanies = include('../../controller/manager/getAvailableMatatus.php');
-$_SESSION['matatuCompanies'] = $matatuCompanies;
-?>
 <script>
     let selectedMatatu = <?php echo json_encode($matatuDetails); ?>;
 </script>
@@ -81,5 +76,3 @@ $_SESSION['matatuCompanies'] = $matatuCompanies;
 </script>
 <script src="../../javascript/manager/home.js"></script>
 <script src="../../javascript/manager/newRoute.js"></script>
-
-</html>
