@@ -141,6 +141,9 @@ body #sideBar #matatuOptions #matatuOption {
   margin-block-start: 2vh;
   border-radius: 15px;
 }
+body #sideBar #matatuOptions #matatuOption * {
+  font-size: 12px;
+}
 body #sideBar #matatuOptions #matatuOption:hover {
   background-color: var(--primaryColor);
 }
@@ -155,23 +158,24 @@ body #sideBar #matatuOptions #matatuOption #details {
   padding-inline: 5%;
   width: 100%;
 }
-body #sideBar #matatuOptions #matatuOption #details #departure_name{
-  /* font-family: 'Times New Roman', Times, serif; */
-}
-body #sideBar #matatuOptions #matatuOption #details #price{
-  /* font-family: 'Times New Roman', Times, serif; */
-}
 body #sideBar #matatuOptions #matatuOption #details #starsDiv{
   display: flex;
   justify-content: space-between;
-  /* font-family: 'Times New Roman', Times, serif; */
+  align-items: center;
+  /* height: 140px; */
 }
 body #sideBar #matatuOptions #matatuOption #details #starsDiv p{
   margin-inline-end: 5px;
-  font-size: 14px;
 }
 body #sideBar #matatuOptions #matatuOption #details #starsDiv #stars {
   display: flex;
+  position: relative;
+}
+body #sideBar #matatuOptions #matatuOption #details #starsDiv #stars p {
+  position: absolute;
+  right: 0;
+  top: -13px;
+  height: 70%;
 }
 body #sideBar #matatuOptions #matatuOption #details #starsDiv #stars .starRating {
   display: flex;

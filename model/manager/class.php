@@ -75,6 +75,10 @@ class managerClass {
         $dboObj = new DBO;
         return $dboObj->deleteRoute($id);
     }
-
+    
+    function selectManagerUsernames() {
+        $dboObj = new DBO;
+        return $dboObj->selectManagerUsernames();
+    }
 }
 ?>

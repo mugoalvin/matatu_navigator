@@ -1,7 +1,3 @@
-<?php
-include("navbar.php");
-?>
-
 <head>
     <title>Create Profile</title>
     <link rel="stylesheet" href="../../css/desktop/manager/create_profile.css">
@@ -9,6 +5,10 @@ include("navbar.php");
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 </head>
+
+<?php
+include("navbar.php");
+?>
 
 <main>
     <div id="formDiv">

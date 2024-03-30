@@ -1,9 +1,3 @@
-<?php
-include ("navbar.php");
-$matatuCompanies = include ('../../controller/manager/getAvailableMatatus.php');
-$_SESSION['matatuCompanies'] = $matatuCompanies;
-?>
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,6 +10,12 @@ $_SESSION['matatuCompanies'] = $matatuCompanies;
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 </head>
+
+<?php
+include ("navbar.php");
+$matatuCompanies = include ('../../controller/manager/getAvailableMatatus.php');
+$_SESSION['matatuCompanies'] = $matatuCompanies;
+?>
 
 <script>
     let selectedMatatu = <?php echo json_encode($matatuDetails); ?>;

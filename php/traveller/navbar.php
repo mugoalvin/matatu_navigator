@@ -30,6 +30,8 @@ $_SESSION['isRatingSaved'] = false;
     <link rel="stylesheet" href="../../css/color.css">
     <link rel="stylesheet" href="../../css/desktop/traveller/navbar.css">
     <link rel="stylesheet" href="../../css/mobile/traveller/navbar.css">
+    <link rel="stylesheet" href="../../css/desktop/manager/create_profile.css">
+
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -87,6 +89,7 @@ $_SESSION['isRatingSaved'] = false;
                 <ion-icon name="chevron-down-outline" id="chevron-down-outline"></ion-icon>
             </div>
             <form id='dropDown' action="../../controller/traveller/logout.php">
+                <!-- <button><ion-icon name="create-outline"></ion-icon>Edit Profile</button> -->
                 <button><ion-icon name="log-out-outline"></ion-icon>Log Out</button>
             </form>
         </div>
@@ -107,7 +110,7 @@ $_SESSION['isRatingSaved'] = false;
         <?php
         $integer = 0;
         foreach ($_SESSION['availableMatatus'] as $availableMatatu): ?>
-            <div id='matatuOption'>
+            <div id='matatuOption' style="font-size: 10px;">
                 <img src='../../images/<?php echo ($availableMatatu->departure_image) ? $availableMatatu->departure_image : $availableMatatu->destination_image ?>'
                     alt='Matatu Image Here'>
                 <div id='details'>
@@ -121,8 +124,9 @@ $_SESSION['isRatingSaved'] = false;
                         <?php echo $availableMatatu->route_id ?>
                     </p>
                     <div id="starsDiv">
-                        <p id="paragraph<?php echo $integer ?>" class="paragraph<?php echo $integer ?>">Div</p>
+                        <p>Time: <?php echo $availableMatatu->eta?></p>
                         <div id="stars" class="stars<?php echo $integer ?>">
+                            <p id="paragraph<?php echo $integer ?>" class="paragraph<?php echo $integer ?>">4.5</p>
                             <span class="starRating" data-value="1">&#9733;</span>
                             <span class="starRating" data-value="2">&#9733;</span>
                             <span class="starRating" data-value="3">&#9733;</span>

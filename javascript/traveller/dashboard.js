@@ -6,8 +6,8 @@ let destinationObj = {
 
 getCurrentLocation().then(function (currentLocation) {
     // Near Nakuru
-    currentLocation.latitude = -0.2797014315110278
-    currentLocation.longitude = 36.077263735725516
+    // currentLocation.latitude = -0.2797014315110278
+    // currentLocation.longitude = 36.077263735725516
     
     // Kabarak Library
     // currentLocation.latitude = -0.16858708483176738, 

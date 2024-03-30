@@ -11,10 +11,6 @@
 <body>
     <?php
     include("../controller/register/getAllUsers.php");
-    // foreach ($allRegisteredUsers as $user) {
-    //     print_r( $user );
-    //     echo "<br>";
-    // }
     ?>
     <script>
         var allUsers = <?php echo json_encode($allRegisteredUsers); ?>

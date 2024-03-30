@@ -96,6 +96,7 @@ $_SESSION['isRouteDeleted'] = false ?>
 <body>
     <header>
         <div>
+            <!-- <ion-icon name="menu"></ion-icon> -->
             <h3>Matatu Navigator</h3>
         </div>
 
@@ -104,8 +105,6 @@ $_SESSION['isRouteDeleted'] = false ?>
             echo ($_SESSION['isMatatuSelected']) ? $matatuDetails->name . ' - ' . $matatuDetails->city : 'No Matatu Logged In';
             ?>
         </div>
-
-        <!-- ==========================New========================== -->
         <div>
             <ion-icon id="darkModeToggle" name="moon"></ion-icon>
             <div id="userAndDropDown" style='position: relative'>
@@ -119,16 +118,12 @@ $_SESSION['isRouteDeleted'] = false ?>
                 </form>
             </div>
         </div>
-        <!-- =========================================== -->
     </header>
 
-
-    <!-- If Not Logged in -->
     <?php if ($_SESSION['isMatatuSelected']): ?>
         <div id="sideBar">
             <div>
                 <h2>SideBar</h2>
-                <ion-icon name="menu"></ion-icon>
             </div>
             <a class="links" href="home.php">
                 <ion-icon name="home"></ion-icon>
@@ -203,5 +198,3 @@ $_SESSION['isRouteDeleted'] = false ?>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>
-
-</html>

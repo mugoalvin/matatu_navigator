@@ -1,41 +1,39 @@
 main {
     display: flex;
-    width: 100%;
+    width: 80%;
     justify-content: center;
     padding: 1%;
 }
-#ratingForm {
+.form {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 60%;
 }
-#ratingForm > div{
+.form > div{
     display: flex;
     flex-direction: column;
     width: 70%;
     margin: 2%;
 }
-#ratingForm > div input, #ratingForm > div select{
+.form > div input, .form > div select{
     height: 2.5em;
     border: solid 1px var(--black);
     border-radius: 0.5em;
     padding-inline: 1%;
 }
-#ratingForm > .submit{
+.form > .submit{
     height: 2em;
     min-width: auto;
     padding-inline: 1%;
 }
 
-/* #rating { */
-    /* display: none; */
-/* } */
-
 #stars {
     display: flex;
+    flex-direction: row;
     justify-content: space-evenly;
     transform: rotateZ('90deg');
+    width: 100%;
 }
 
 .star {

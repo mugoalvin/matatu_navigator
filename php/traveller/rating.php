@@ -6,7 +6,7 @@ include("navbar.php");
 </head>
 
 <main>
-    <form action="../../controller/traveller/addRating.php" method="post" id="ratingForm">
+    <form action="../../controller/traveller/addRating.php" method="post" id="ratingForm" class="form">
         <div>
             <label>Route ID:</label>
             <input name="route_id" id="route_id_value" type="number">
@@ -26,14 +26,13 @@ include("navbar.php");
                 <span class="star" data-value="5">&#9733;</span>
             </div>
         </div>
-        <?php foreach ($_SESSION["loginInUser"] as $key => $value) {
-            // echo $key . ' = '. $value . '<br>';
-        } ?>
         <div>
             <label>Feedback:</label>
             <input name="feedback" type="textarea" id="feedback" placeholder="Leave a short comment (optional)" />
         </div>
-        <button id="submit">Confirm</button>
+        <div>
+            <button id="submit" class="formBtn">Confirm</button>
+        </div>
     </form>
 </main>
 <script src="../../javascript/traveller/rating.js"></script>

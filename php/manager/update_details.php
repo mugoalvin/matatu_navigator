@@ -1,7 +1,3 @@
-<?php
-include("navbar.php");
-$descTableResult = include('../../controller/manager/descMatatuCompanies.php');
-?>
 
 <head>
     <meta charset="UTF-8">
@@ -14,6 +10,10 @@ $descTableResult = include('../../controller/manager/descMatatuCompanies.php');
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 </head>
 
+<?php
+include("navbar.php");
+$descTableResult = include('../../controller/manager/descMatatuCompanies.php');
+?>
 <script>
     let selectedMatatu = <?php echo json_encode($matatuDetails); ?>;
 </script>

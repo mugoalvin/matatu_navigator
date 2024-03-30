@@ -261,4 +261,16 @@ class DBO
             throw $th;
         }
     }
+
+    function selectManagerUsernames() {
+        $command = "SELECT username FROM managers";
+        $this->stmt = $this->conn->prepare($command);
+        try {
+            $this->stmt->execute();
+            return $this->stmt->fetchAll(PDO::FETCH_OBJ);
+        }
+        catch (Throwable $th) {
+            throw $th;      
+        }
+    }
 }

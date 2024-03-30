@@ -15,28 +15,11 @@ include('navbar.php');
 </head>
 <main id="main">
     <div id="map"></div>
-    <section id="feedbackSection">
-
-        <!-- ======================Cards====================== -->
-        <div class="card">
-            <h3>Mololine Sacco</h3>
-            <div class="individualFeedback">
-                <h4>mugoalvin</h4>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos facere dolore eius earum et repellat
-                    perspiciatis at rerum in sunt.</p>
-            </div>
-            <div class="individualFeedback">
-                <h4>maureen</h4>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem, earum?</p>
-            </div>
-        </div>
-        <!-- ============================================= -->
-    </section>
+    <section id="feedbackSection"></section>
     <section id="directionSection">
         <h3>Directions Below</h3>
         <div id="directionSectionDiv"></div>
     </section>
-
     <div id="toggleComment"><ion-icon id="toggleCommentIcon" name="play-back"></ion-icon></div>
     <div id="toggleDirections"><ion-icon id="toggleDirectionsIcon" name="compass-outline"></ion-icon></div>
 </main>

@@ -63,7 +63,6 @@
         </a>
     </div>
 
-
     <script>
         document.getElementById('user').addEventListener('click', () => {
             const dropDown = document.getElementById('dropDown');

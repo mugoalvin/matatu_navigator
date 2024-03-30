@@ -43,9 +43,9 @@ availableMatatusObj.forEach(availableMatatuObj => {
 
     var idOfParagraph = "paragraph" + integer;
     var ratingP = document.querySelector("." + idOfParagraph);
-    ratingP.innerText = "Rating: " + averageRating.toFixed(1);
-    ratingP.style.fontWeight = 900
-    ratingP.style.color = generateColor(averageRating)
+    ratingP.innerText = averageRating.toFixed(1)
+    ratingP.style.fontWeight = 500
+    // ratingP.style.color = generateColor(averageRating)
 
     var stars = document.querySelectorAll('.stars'+ integer + ' .starRating');
     stars.forEach(function (star, index) {

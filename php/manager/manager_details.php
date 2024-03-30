@@ -1,6 +1,7 @@
 <?php
 session_start();
 include("navbar.php");
+include("../../controller/manager/getAllManagerUsernames.php");
 $descTableResult = include('../../controller/manager/descManagerDetails.php');
 ?>
 
@@ -8,14 +9,20 @@ $descTableResult = include('../../controller/manager/descManagerDetails.php');
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manager Details</title>
-
+    <link rel="stylesheet" href="../../css/color.css">
     <link rel="stylesheet" href="../../css/desktop/manager/create_profile.css">
 </head>
-
+<script>
+    var managerUsernames = <?php echo json_encode($managerUsernames)?>
+</script>
 <main>
     <style>
         .form {
             overflow-y: scroll;
+        }
+        .form div p{
+            font-size: 12px;
+            color: var(--errorText);
         }
     </style>
     <form class="form" action="../../controller/manager/updatePersonalProfile.php" method="post">
@@ -40,10 +47,15 @@ $descTableResult = include('../../controller/manager/descManagerDetails.php');
             else {
                 $inputBoxValue = $_SESSION["loggedInManager"]->{$result->Field};
             }
+
+            
             ?>
             <div>
                 <label id='label'><?php echo $result->Field?>: </label>
-                <input name=<?php echo $result->Field ?> value=<?php echo $inputBoxValue ?>></input>
+                <input name=<?php echo $result->Field ?> id="<?php echo $result->Field ?>Input" value=<?php echo $inputBoxValue ?>></input>
+                <?php if ($result->Field == "username") : ?>
+                    <p class="errorMessages" id="usernameError"></p>
+                    <?php endif; ?>
             </div>
         <?php endforeach; ?>
         <div>
@@ -69,6 +81,18 @@ $descTableResult = include('../../controller/manager/descManagerDetails.php');
             }
         }
     });
+
+    managerUsernames.forEach(usernames => {
+        errorMsg = ""
+        if (usernames.username == document.getElementById("usernameInput").value) {
+            errorMsg = "Username already exists"
+            console.log("Found");
+            break
+        }
+        document.getElementById("usernameError").innerText = errorMsg
+    });
+    // document.getElementById("usernameInput").addEventListener("input", () => {
+    // })
 </script>
 
 </html>
