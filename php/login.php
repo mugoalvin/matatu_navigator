@@ -36,6 +36,12 @@
         <a href="registration.php">Dont Have An Account? Sign Up</a>
     </form>
 
+    <?php if($_SESSION['isCredentialsInvalid']) :?>
+        <script>
+            alert("Confirm Login Credentials")
+        </script>
+    <?php endif; $_SESSION['isCredentialsInvalid'] = false?>
+
     <script src="../javascript/register.js"></script>
     <script src="../javascript/login.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>

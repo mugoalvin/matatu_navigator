@@ -46,11 +46,11 @@ main #feedbackSection .card h3 {
     top: 0;
     color: var(--primaryColor);
     text-align: center;
-    backdrop-filter: blur('10px');
+    /* backdrop-filter: blur('10px'); */
+    background-color: var(--white);
 }
 main #feedbackSection .card .individualFeedback {
     margin-block-start: 2%;
-    /* background-color: red; */
 }
 main #feedbackSection .card .individualFeedback #userStar {
     display: flex;

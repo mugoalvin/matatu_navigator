@@ -221,9 +221,8 @@ class DBO
 
     function readRouteData($id)
     {
+        // $readCommand = "SELECT routes.id, price, eta, city FROM routes JOIN matatuCompanies ON routes.destination_id = matatuCompanies.id WHERE routes.departure_id = :id OR routes.destination_id = :id";
         $readCommand = "SELECT routes.id, price, eta, city FROM routes JOIN matatuCompanies ON routes.destination_id = matatuCompanies.id WHERE routes.departure_id = :id OR routes.destination_id = :id";
-        // $readCommand = "SELECT routes.id, price, eta, mc_departure.city AS departureCity, mc_destination.city AS destinationCity FROM routes JOIN matatuCompanies AS mc_departure ON routes.departure_id = mc_departure.id JOIN matatuCompanies AS mc_destination ON routes.destination_id = mc_destination.id WHERE routes.departure_id = :id OR routes.destination_id = :id";
-        // $readCommand = "SELECT * FROM routes JOIN matatuCompanies ON routes.destination_id = matatuCompanies.id WHERE routes.id = :id";
         $stmt = $this->conn->prepare($readCommand);
         $stmt->bindParam(':id', $id);
         try {

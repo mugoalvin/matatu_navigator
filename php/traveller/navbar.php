@@ -138,6 +138,9 @@ $_SESSION['isRatingSaved'] = false;
             </div>
         <?php $integer += 1; endforeach; ?>
     </div>
+    <!-- <div style="background: red;">
+        <ion-icon name="backspace-outline"></ion-icon>
+    </div> -->
 </section>
 <script src="../../javascript/traveller/home.js"></script>
 <script src="../../javascript/traveller/navbar.js"></script>

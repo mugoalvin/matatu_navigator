@@ -1,4 +1,4 @@
-<?php
+ <?php
 include("navbar.php");
 ?>
 <head>
@@ -28,7 +28,8 @@ include("navbar.php");
         </div>
         <div>
             <label>Feedback:</label>
-            <input name="feedback" type="textarea" id="feedback" placeholder="Leave a short comment (optional)" />
+            <!-- <input name="feedback" type="textarea" id="feedback" placeholder="Leave a short comment (optional)" > -->
+            <textarea name="feedback" type="textarea" id="feedback" placeholder="Leave a short comment" style="height: 200px; padding: 10px;" ></textarea>
         </div>
         <div>
             <button id="submit" class="formBtn">Confirm</button>

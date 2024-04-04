@@ -33,6 +33,7 @@ if (isset($_POST)) {
                         $_SESSION["loggedInManager"] = $credential;
                         header("Location: ../../php/manager/home.php");
                     } else {
+                        $_SESSION['isCredentialsInvalid'] = true;
                         header("Location: ../../php/login.php");
                     }
                 }
@@ -47,6 +48,7 @@ if (isset($_POST)) {
                     $_SESSION["loginInUser"] = $credential;
                     header("Location: ../../php/traveller/dashboard.php");
                 } else {
+                    $_SESSION['isCredentialsInvalid'] = true;
                     header("Location: ../../php/login.php");
                 }
             }
@@ -55,6 +57,10 @@ if (isset($_POST)) {
     elseif ($usersInput->userCategory == 'administrator') {
         if ($usersInput->username == 'admin' && $usersInput->password == 'a') {
             header("Location: ../../php/admin/home.php");
+        }
+        else {
+            $_SESSION['isCredentialsInvalid'] = true;
+            header("Location: ../../php/login.php");
         }
     }
 }

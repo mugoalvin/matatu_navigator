@@ -43,6 +43,9 @@ include('navbar.php');
                     $_SESSION["routeId"] = $value;
                     continue;
                 }
+                // if ($key == $matatuDetails->city) {
+                //     $key = 
+                // }
                 ?>
                 <form class="form" action="../../controller/manager/editRoutes.php" method="post">
                     <div>
